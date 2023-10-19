@@ -3,14 +3,13 @@ package com.winxfansite.fansite.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/")
 public class MainController {
-    @GetMapping("/")
-    public String index(Model model)
-    {
-        model.addAttribute("title", "Добро пожаловать на фан-сайт Винкс!");
-        model.addAttribute("content", "Hello world!");
-        return "index";
+    @GetMapping()
+    public String index(Model model) {
+        return "main/index";
     }
 }
