@@ -56,4 +56,19 @@ public class ArticleAccess {
         }
         return result;
     }
+    public List<Article> findArticles(String query) {
+        List<Article> result = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            String SQLQuery = "SELECT * FROM articles WHERE header LIKE '%" + query + "%'";
+            ResultSet resultSet = statement.executeQuery(SQLQuery);
+            while (resultSet.next()) {
+                Article newArticle = new Article(resultSet.getInt("id"), resultSet.getString("header"), resultSet.getString("shortdescr"), resultSet.getString("longdescr"), resultSet.getString("articletype"), resultSet.getString("author"));
+                result.add(newArticle);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
 }
