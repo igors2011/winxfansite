@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.sql.Connection;
 import java.util.List;
 
 @Controller
 @RequestMapping("/articles")
 public class ArticlesController {
-
     private final ArticleAccess articleAccess;
     public ArticlesController(ArticleAccess fairiesAccess) {
         this.articleAccess = fairiesAccess;
