@@ -10,8 +10,8 @@ import java.util.List;
 @Component
 public class ArticleAccess {
     private static final String URL = "jdbc:postgresql://localhost:5432/winxfansite";
-    private static final String USER = "postgres";
-    private static final String PASSWORD = "postgres";
+    private static final String USER = "defaultuser";
+    private static final String PASSWORD = "1";
     private static final Connection connection;
     static {
         try {
