@@ -4,13 +4,9 @@ import com.winxfansite.fansite.models.Article;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 @Component
 public class ArticleAccess {
@@ -42,23 +38,6 @@ public class ArticleAccess {
             ResultSet resultSet = statement.executeQuery(SQLQuery);
             while (resultSet.next()) {
                 result = new Article(resultSet.getInt("id"), resultSet.getString("header"), resultSet.getString("shortdescr"), resultSet.getString("longdescr"), resultSet.getString("articletype"), resultSet.getString("author"));
-            }
-        } catch (SQLException | IOException e) {
-            throw new RuntimeException(e);
-        }
-        return result;
-    }
-    public List<Article> findArticles(String query) {
-        List<Article> result = new ArrayList<>();
-        Connection connection = null;
-        try {
-            connection = DBConnection.getConnection();
-            Statement statement = connection.createStatement();
-            String SQLQuery = "SELECT * FROM articles WHERE header LIKE '%" + query + "%'";
-            ResultSet resultSet = statement.executeQuery(SQLQuery);
-            while (resultSet.next()) {
-                Article newArticle = new Article(resultSet.getInt("id"), resultSet.getString("header"), resultSet.getString("shortdescr"), resultSet.getString("longdescr"), resultSet.getString("articletype"), resultSet.getString("author"));
-                result.add(newArticle);
             }
         } catch (SQLException | IOException e) {
             throw new RuntimeException(e);

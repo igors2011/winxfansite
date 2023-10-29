@@ -44,11 +44,4 @@ public class ArticlesController {
         model.addAttribute("article", article);
         return "articles/schools/school";
     }
-    @GetMapping("/search")
-    public String searchResult(@RequestParam("query") String query, Model model)
-    {
-        List<Article> foundArticles = articleAccess.findArticles(query);
-        model.addAttribute("searchResult", foundArticles);
-        return "articles/searchResult";
-    }
 }
