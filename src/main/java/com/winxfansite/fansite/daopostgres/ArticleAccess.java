@@ -44,4 +44,21 @@ public class ArticleAccess {
         }
         return result;
     }
+    public Article getArticleByHeader(String header) {
+        Article result = null;
+        Connection connection = null;
+        try {
+            connection = DBConnection.getConnection();
+            Statement statement = connection.createStatement();
+            String SQLQuery = "SELECT * FROM articles WHERE header = '" + header + "'";
+            ResultSet resultSet = statement.executeQuery(SQLQuery);
+            while (resultSet.next()) {
+                result = new Article(resultSet.getInt("id"), resultSet.getString("header"), resultSet.getString("shortdescr"), resultSet.getString("longdescr"), resultSet.getString("articletype"), resultSet.getString("author"));
+            }
+            connection.close();
+        } catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
 }

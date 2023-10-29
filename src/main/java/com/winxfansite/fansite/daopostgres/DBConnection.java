@@ -1,5 +1,7 @@
 package com.winxfansite.fansite.daopostgres;
 
+import com.winxfansite.fansite.models.Article;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;

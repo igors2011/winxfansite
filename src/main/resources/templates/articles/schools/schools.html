@@ -5,11 +5,11 @@
     <title>Школы</title>
 </head>
 <body>
-    <div th:each="article : ${allSchools}">
+    <div th:each="school : ${allSchools}">
         <h1>
-            <a th:href="@{/articles/schools/school/{id}(id=${article.getId()})}" th:text="${article.getHeader()}"></a>
+            <a th:href="@{/schools/{schoolName}(schoolName=${school.getHeader()})}" th:text="${school.getHeader()}"></a>
         </h1>
-        <div th:text="${article.getShortDescr()}"></div>
+        <div th:text="${school.getShortDescr()}"></div>
     </div>
 </body>
 </html>
