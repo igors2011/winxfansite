@@ -1,7 +1,8 @@
 package com.winxfansite.fansite.controllers;
 
-import com.winxfansite.fansite.dataaccesspostgres.ArticleAccess;
+import com.winxfansite.fansite.daopostgres.ArticleAccess;
 import com.winxfansite.fansite.models.Article;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,13 +10,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.sql.Connection;
 import java.util.List;
 
 @Controller
 @RequestMapping("/articles")
 public class ArticlesController {
     private final ArticleAccess articleAccess;
+    @Autowired
     public ArticlesController(ArticleAccess fairiesAccess) {
         this.articleAccess = fairiesAccess;
     }
@@ -42,12 +43,5 @@ public class ArticlesController {
         Article article = articleAccess.getArticleById(id);
         model.addAttribute("article", article);
         return "articles/schools/school";
-    }
-    @GetMapping("/search")
-    public String searchResult(@RequestParam("query") String query, Model model)
-    {
-        List<Article> foundArticles = articleAccess.findArticles(query);
-        model.addAttribute("searchResult", foundArticles);
-        return "articles/searchResult";
     }
 }

@@ -5,11 +5,11 @@
     <title>Феи</title>
 </head>
 <body>
-    <div th:each="article : ${allFairies}">
+    <div th:each="fairy : ${allFairies}">
         <h1>
-            <a th:href="@{/articles/fairies/fairy/{id}(id=${article.getId()})}" th:text="${article.getHeader()}"></a>
+            <a th:href="@{/fairies/{fairyName}(fairyName=${fairy.getHeader()})}" th:text="${fairy.getHeader()}"></a>
         </h1>
-        <div th:text="${article.getShortDescr()}"></div>
+        <div th:text="${fairy.getShortDescr()}"></div>
     </div>
 </body>
 </html>
