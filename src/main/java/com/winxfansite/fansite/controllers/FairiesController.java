@@ -24,12 +24,12 @@ public class FairiesController {
     public String getFairies(Model model) {
         List<Article> allFairies = articleAccess.getArticles("Fairy");
         model.addAttribute("allFairies", allFairies);
-        return "articles/fairies/fairies";
+        return "articles/fairies";
     }
     @GetMapping("{fairyName}")
     public String getFairyByName(@PathVariable("fairyName") String fairyName, Model model) {
         Article fairy = articleAccess.getArticleByHeader(fairyName);
         model.addAttribute("fairy", fairy);
-        return "articles/fairies/fairy";
+        return "articles/fairy";
     }
 }

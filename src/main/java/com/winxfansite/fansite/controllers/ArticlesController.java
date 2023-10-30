@@ -24,24 +24,24 @@ public class ArticlesController {
     public String fairies(Model model) {
         List<Article> allFairies = articleAccess.getArticles("Fairy");
         model.addAttribute("allFairies", allFairies);
-        return "articles/fairies/fairies";
+        return "articles/fairies";
     }
     @GetMapping("/schools")
     public String schools(Model model) {
         List<Article> allSchools = articleAccess.getArticles("School");
         model.addAttribute("allSchools", allSchools);
-        return "articles/schools/schools";
+        return "articles/schools";
     }
     @GetMapping("/fairies/fairy/{id}")
     public String fairy(@PathVariable("id") int id, Model model) {
         Article article = articleAccess.getArticleById(id);
         model.addAttribute("article", article);
-        return "articles/fairies/fairy";
+        return "articles/fairy";
     }
     @GetMapping("/schools/school/{id}")
     public String school(@PathVariable("id") int id, Model model) {
         Article article = articleAccess.getArticleById(id);
         model.addAttribute("article", article);
-        return "articles/schools/school";
+        return "articles/school";
     }
 }

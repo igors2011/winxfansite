@@ -23,12 +23,12 @@ public class SchoolsController {
     public String getSchools(Model model) {
         List<Article> allSchools = articleAccess.getArticles("School");
         model.addAttribute("allSchools", allSchools);
-        return "articles/schools/schools";
+        return "articles/schools";
     }
     @GetMapping("/{schoolName}")
     public String getSchoolByName(@PathVariable("schoolName") String schoolName, Model model) {
         Article school = articleAccess.getArticleByHeader(schoolName);
         model.addAttribute("school", school);
-        return "articles/schools/school";
+        return "articles/school";
     }
 }
