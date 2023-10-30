@@ -5,6 +5,7 @@
     <title>Результаты поиска</title>
 </head>
 <body>
+    <div th:insert="shared/header :: header"></div>
     <div>Найденные статьи:</div>
     <div th:each="article : ${searchResult}">
         <h1>

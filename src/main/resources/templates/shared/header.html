@@ -1,0 +1,26 @@
+<div th:fragment="header">
+    <link rel="stylesheet" href="/css/style.css">
+    <!--шапка-->
+    <div class="main">
+        <div class="header-wrapper">
+            <img src="img/logo.png">
+            <nav>
+                <div class="links">
+                    <a href="fairies"><img src="img/1.svg"> ФЕИ</a>
+                    <a href="../../static/static/css/style.css"><img src="img/2.svg">СПЕЦИАЛИСТЫ</a>
+                    <a href=""><img src="img/3.svg">ЗЛОДЕИ</a>
+                    <a href="schools"><img src="img/4.svg">ШКОЛЫ</a>
+                    <a href=""><img src="img/5.svg">ТЕСТЫ</a>
+                </div>
+            </nav>
+            <form method="get" action="search">
+                <div class="input-field">
+                    <button type="submit"><img src="img/search.svg"></button>
+                    <input type="text" name="query"/>
+                </div>
+            </form>
+            <img src="img/people.png">
+        </div>
+    </div>
+    <!--шапка-->
+</div>
