@@ -1,16 +1,15 @@
 <div th:fragment="header">
-    <link rel="stylesheet" href="/css/style.css">
     <!--шапка-->
     <div class="main">
         <div class="header-wrapper">
             <img src="img/logo.svg">
             <nav>
                 <div class="links">
-                    <a href="fairies"><img src="img/1.svg"> ФЕИ</a>
-                    <a href="../../static/static/css/style.css"><img src="img/2.svg">СПЕЦИАЛИСТЫ</a>
-                    <a href=""><img src="img/3.svg">ЗЛОДЕИ</a>
-                    <a href="schools"><img src="img/4.svg">ШКОЛЫ</a>
-                    <a href=""><img src="img/5.svg">ТЕСТЫ</a>
+                    <a th:href="@{/fairies}"><img src="img/1.svg"> ФЕИ</a>
+                    <a th:href="@{/}"><img src="img/2.svg">СПЕЦИАЛИСТЫ</a>
+                    <a th:href="@{/}"><img src="img/3.svg">ЗЛОДЕИ</a>
+                    <a th:href="@{/schools}"><img src="img/4.svg">ШКОЛЫ</a>
+                    <a th:href="@{/}"><img src="img/5.svg">ТЕСТЫ</a>
                 </div>
             </nav>
             <form method="get" action="search">
