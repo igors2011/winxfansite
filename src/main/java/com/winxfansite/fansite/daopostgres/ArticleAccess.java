@@ -12,9 +12,8 @@ import java.util.List;
 public class ArticleAccess {
     public List<Article> getArticles(String articleType) {
         List<Article> result = new ArrayList<>();
-        Connection connection = null;
         try {
-            connection = DBConnection.getConnection();
+            var connection = DBConnection.getConnection();
             Statement statement = connection.createStatement();
             String SQLQuery = "SELECT * FROM articles WHERE articletype = '" + articleType + "'";
             ResultSet resultSet = statement.executeQuery(SQLQuery);
@@ -22,6 +21,7 @@ public class ArticleAccess {
                 Article newArticle = new Article(resultSet.getInt("id"), resultSet.getString("header"), resultSet.getString("shortdescr"), resultSet.getString("longdescr"), resultSet.getString("articletype"), resultSet.getString("author"));
                 result.add(newArticle);
             }
+            connection.close();
         } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
@@ -30,15 +30,15 @@ public class ArticleAccess {
 
     public Article getArticleById(int id) {
         Article result = null;
-        Connection connection = null;
         try {
-            connection = DBConnection.getConnection();
+            var connection = DBConnection.getConnection();
             Statement statement = connection.createStatement();
             String SQLQuery = "SELECT * FROM articles WHERE id = '" + id + "'";
             ResultSet resultSet = statement.executeQuery(SQLQuery);
             while (resultSet.next()) {
                 result = new Article(resultSet.getInt("id"), resultSet.getString("header"), resultSet.getString("shortdescr"), resultSet.getString("longdescr"), resultSet.getString("articletype"), resultSet.getString("author"));
             }
+            connection.close();
         } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
@@ -46,9 +46,8 @@ public class ArticleAccess {
     }
     public Article getArticleByHeader(String header) {
         Article result = null;
-        Connection connection = null;
         try {
-            connection = DBConnection.getConnection();
+            var connection = DBConnection.getConnection();
             Statement statement = connection.createStatement();
             String SQLQuery = "SELECT * FROM articles WHERE header = '" + header + "'";
             ResultSet resultSet = statement.executeQuery(SQLQuery);

@@ -15,9 +15,8 @@ import java.util.List;
 public class SearchAccess {
     public List<Article> find(String query) {
         List<Article> result = new ArrayList<>();
-        Connection connection = null;
         try {
-            connection = DBConnection.getConnection();
+            var connection = DBConnection.getConnection();
             Statement statement = connection.createStatement();
             String SQLQuery = "SELECT * FROM articles WHERE header LIKE '%" + query + "%'";
             ResultSet resultSet = statement.executeQuery(SQLQuery);
@@ -25,6 +24,7 @@ public class SearchAccess {
                 Article newArticle = new Article(resultSet.getInt("id"), resultSet.getString("header"), resultSet.getString("shortdescr"), resultSet.getString("longdescr"), resultSet.getString("articletype"), resultSet.getString("author"));
                 result.add(newArticle);
             }
+            connection.close();
         } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
