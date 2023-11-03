@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <div th:insert="shared/meta :: meta"></div>
+    <div th:insert="~{shared/meta :: meta}"></div>
     <title th:text="${fairy.getHeader()}"></title>
 </head>
 <body>
+    <div th:insert="~{shared/header :: header}"></div>
     <h1 th:text="${fairy.getHeader()}"></h1>
     <div th:text="${fairy.getLongDescr()}"></div>
 </body>
