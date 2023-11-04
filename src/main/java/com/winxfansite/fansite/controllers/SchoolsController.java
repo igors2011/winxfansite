@@ -19,7 +19,7 @@ public class SchoolsController {
     public SchoolsController(ArticleAccess articleAccess) {
         this.articleAccess = articleAccess;
     }
-    @GetMapping()
+    @GetMapping(value = {"", "/"})
     public String getSchools(Model model) {
         List<Article> allSchools = articleAccess.getArticles("School");
         model.addAttribute("allSchools", allSchools);

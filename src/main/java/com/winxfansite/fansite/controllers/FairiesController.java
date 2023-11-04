@@ -20,7 +20,7 @@ public class FairiesController {
     public FairiesController(ArticleAccess articleAccess) {
         this.articleAccess = articleAccess;
     }
-    @GetMapping()
+    @GetMapping(value = {"", "/"})
     public String getFairies(Model model) {
         List<Article> allFairies = articleAccess.getArticles("Fairy");
         model.addAttribute("allFairies", allFairies);
