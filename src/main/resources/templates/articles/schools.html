@@ -6,11 +6,11 @@
 </head>
 <body>
     <div th:insert="~{shared/header :: header}"></div>
-    <div th:each="school : ${allSchools}">
+    <div th:each="article : ${allSchools}">
         <h1>
-            <a th:href="@{/schools/{schoolName}(schoolName=${school.getHeader()})}" th:text="${school.getHeader()}"></a>
+            <a th:href="@{{URL}(URL=${article.getURL()})}" th:text="${article.getHeader()}"></a>
         </h1>
-        <div th:text="${school.getShortDescr()}"></div>
+        <div th:text="${article.getShortDescr()}"></div>
     </div>
 </body>
 </html>
