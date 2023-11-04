@@ -6,16 +6,18 @@ public class Article
     private String header;
     private String shortDescr;
     private String longDescr;
-    private String articleType;
+    private String type;
     private String author;
+    private String URL;
 
-    public Article(int id, String header, String shortDescr, String longDescr, String articleType, String author) {
+    public Article(int id, String header, String shortDescr, String longDescr, String type, String author) {
         this.id = id;
         this.header = header;
         this.shortDescr = shortDescr;
         this.longDescr = longDescr;
-        this.articleType = articleType;
+        this.type = type;
         this.author = author;
+        this.URL = type + "/" + header;
     }
 
     public int getId() {
@@ -50,12 +52,12 @@ public class Article
         this.longDescr = longDescr;
     }
 
-    public String getArticleType() {
-        return articleType;
+    public String getType() {
+        return type;
     }
 
-    public void setArticleType(String articleType) {
-        this.articleType = articleType;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getAuthor() {
@@ -64,5 +66,9 @@ public class Article
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public String getURL() {
+        return URL;
     }
 }

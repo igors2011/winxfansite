@@ -21,7 +21,7 @@ public class SearchAccess {
             String SQLQuery = "SELECT * FROM articles WHERE header LIKE '%" + query + "%'";
             ResultSet resultSet = statement.executeQuery(SQLQuery);
             while (resultSet.next()) {
-                Article newArticle = new Article(resultSet.getInt("id"), resultSet.getString("header"), resultSet.getString("shortdescr"), resultSet.getString("longdescr"), resultSet.getString("articletype"), resultSet.getString("author"));
+                Article newArticle = ArticleAccess.resultSetToArticle(resultSet);
                 result.add(newArticle);
             }
             connection.close();

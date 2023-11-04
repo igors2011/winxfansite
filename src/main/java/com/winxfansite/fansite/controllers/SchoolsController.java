@@ -21,7 +21,7 @@ public class SchoolsController {
     }
     @GetMapping(value = {"", "/"})
     public String getSchools(Model model) {
-        List<Article> allSchools = articleAccess.getArticles("School");
+        List<Article> allSchools = articleAccess.getArticlesByType("schools");
         model.addAttribute("allSchools", allSchools);
         return "articles/schools";
     }

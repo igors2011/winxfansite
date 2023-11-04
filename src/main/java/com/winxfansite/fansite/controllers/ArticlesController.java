@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -22,13 +21,13 @@ public class ArticlesController {
     }
     @GetMapping("/fairies")
     public String fairies(Model model) {
-        List<Article> allFairies = articleAccess.getArticles("Fairy");
+        List<Article> allFairies = articleAccess.getArticlesByType("Fairy");
         model.addAttribute("allFairies", allFairies);
         return "articles/fairies";
     }
     @GetMapping("/schools")
     public String schools(Model model) {
-        List<Article> allSchools = articleAccess.getArticles("School");
+        List<Article> allSchools = articleAccess.getArticlesByType("School");
         model.addAttribute("allSchools", allSchools);
         return "articles/schools";
     }
