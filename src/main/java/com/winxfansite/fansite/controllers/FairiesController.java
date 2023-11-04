@@ -22,7 +22,7 @@ public class FairiesController {
     }
     @GetMapping(value = {"", "/"})
     public String getFairies(Model model) {
-        List<Article> allFairies = articleAccess.getArticles("Fairy");
+        List<Article> allFairies = articleAccess.getArticlesByType("fairies");
         model.addAttribute("allFairies", allFairies);
         return "articles/fairies";
     }

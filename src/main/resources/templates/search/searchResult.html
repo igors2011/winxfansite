@@ -9,7 +9,7 @@
     <div>Найденные статьи:</div>
     <div th:each="article : ${searchResult}">
         <h1>
-            <div th:text="${article.getHeader()}"></div>
+            <a th:href="@{{URL}(URL=${article.getURL()})}"><div th:text="${article.getHeader()}"></div></a>
         </h1>
         <div th:text="${article.getShortDescr()}"></div>
     </div>
