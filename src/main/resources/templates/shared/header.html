@@ -13,10 +13,12 @@
                 </div>
             </nav>
             <form method="get" th:attr="action=@{/search}">
-                <button type="submit"><img th:src="@{/img/search.svg}"></button>
-                <input type="text" name="query" />
+                <div class="search_field">
+                    <img th:src="@{/img/search.svg}">
+                    <input type="text" name="query" placeholder="Поиск" />
+                </div>
             </form>
-            <div class="user"><img th:src="@{/img/people.png}"</div>
+            <div class="user"><img th:src="@{/img/people.png}"></div>
         </div>
     </div>
     <!--шапка-->

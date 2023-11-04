@@ -10,6 +10,7 @@
 
 .links a{
     color: #fff;
+    font-size: 24px;
     text-decoration: none;
     margin-right: 20px;
 }
@@ -43,20 +44,21 @@ h1{
     text-align: center;
 }
 
-.form {
-    width: 300px; /* Ширина поля с кнопкой */
-    border: 1px solid #000; /* Параметры рамки */
-    min-height: 20px; /* Минимальная высота */
-   }
-   input[type="text"] {
-    border: none; /* Убираем рамку */
-    outline: none; /* Убираем свечение в Chrome и Safari */
-    -webkit-appearance: none; /* Убираем рамку в Chrome и Safari */
-    width: 200px; /* Ширина поля */
-    vertical-align: middle; /* Выравнивание по середине */
-   }
-   button[type="submit"] {
-    width: 20px; /* Ширина кнопки */
-    height: 20px; /* Высота кнопки */
-    border: none; /* Убираем рамку */
-   }
+.search_field {
+    background-color: #fff;
+    border-radius: 5px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 2;
+    -ms-flex: 2;
+    flex: 2;
+    position: relative;
+    width: 200px;
+}
+
+input{
+    border: none;
+    outline: none;
+}
+
