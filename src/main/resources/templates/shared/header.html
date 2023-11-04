@@ -8,17 +8,15 @@
                     <a th:href="@{/fairies}"><img th:src="@{/img/1.svg}"> ФЕИ</a>
                     <a th:href="@{/}"><img th:src="@{/img/2.svg}">СПЕЦИАЛИСТЫ</a>
                     <a th:href="@{/}"><img th:src="@{/img/3.svg}">ЗЛОДЕИ</a>
-                    <a th:href="@{/schools}"><img th:src="@{/img/4.svg}">ШКОЛЫ</a>
-                    <a th:href="@{/}"><img th:src="@{/img/5.svg}">ТЕСТЫ</a>
+                    <a th:href="@{/schools}"><img th:src="@{/img/5.svg}">ТЕСТЫ</a>
+                    <a th:href="@{/}"><!--<img th:src="@{/img/5.svg}">-->ПРОЧЕЕ</a>
                 </div>
             </nav>
             <form method="get" th:attr="action=@{/search}">
-                <div class="input-field">
-                    <button type="submit"><img th:src="@{/img/search.svg}"></button>
-                    <input type="text" name="query"/>
-                </div>
+                <button type="submit"><img th:src="@{/img/search.svg}"></button>
+                <input type="text" name="query" />
             </form>
-            <img th:src="@{/img/people.png}">
+            <div class="user"><img th:src="@{/img/people.png}"</div>
         </div>
     </div>
     <!--шапка-->
