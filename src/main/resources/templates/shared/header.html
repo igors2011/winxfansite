@@ -2,23 +2,23 @@
     <!--шапка-->
     <div class="main">
         <div class="header-wrapper">
-            <img th:src="@{img/logo.svg}">
+            <img th:src="@{/img/logo.svg}">
             <nav>
                 <div class="links">
-                    <a th:href="@{/fairies}"><img th:src="@{img/1.svg}"> ФЕИ</a>
-                    <a th:href="@{/}"><img th:src="@{img/2.svg}">СПЕЦИАЛИСТЫ</a>
-                    <a th:href="@{/}"><img th:src="@{img/3.svg}">ЗЛОДЕИ</a>
-                    <a th:href="@{/schools}"><img th:src="@{img/4.svg}">ШКОЛЫ</a>
-                    <a th:href="@{/}"><img th:src="@{img/5.svg}">ТЕСТЫ</a>
+                    <a th:href="@{/fairies}"><img th:src="@{/img/1.svg}"> ФЕИ</a>
+                    <a th:href="@{/}"><img th:src="@{/img/2.svg}">СПЕЦИАЛИСТЫ</a>
+                    <a th:href="@{/}"><img th:src="@{/img/3.svg}">ЗЛОДЕИ</a>
+                    <a th:href="@{/schools}"><img th:src="@{/img/4.svg}">ШКОЛЫ</a>
+                    <a th:href="@{/}"><img th:src="@{/img/5.svg}">ТЕСТЫ</a>
                 </div>
             </nav>
             <form method="get" th:attr="action=@{/search}">
                 <div class="input-field">
-                    <button type="submit"><img th:src="@{img/search.svg}"></button>
+                    <button type="submit"><img th:src="@{/img/search.svg}"></button>
                     <input type="text" name="query"/>
                 </div>
             </form>
-            <img src="img/people.png">
+            <img th:src="@{/img/people.png}">
         </div>
     </div>
     <!--шапка-->
