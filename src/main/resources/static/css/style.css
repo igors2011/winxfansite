@@ -30,6 +30,9 @@ li {
     padding-right: 2.5%;
     display: flex;
     flex-direction: row;
+    height: 50%;
+    top: 25%;
+    position: relative;
 }
 
 form {
@@ -55,11 +58,11 @@ img {
 }
 
 a img {
-
+    height: 50%;
 }
 
 .img_main img {
-
+    height: 100%;
 }
 
 h1{
