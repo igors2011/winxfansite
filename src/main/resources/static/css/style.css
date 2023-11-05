@@ -56,6 +56,17 @@ form {
     flex-direction: row;
 }
 
+.selected_nav a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+}
+
+.selected_nav {
+    background-color: blueviolet;
+}
+
 a img {
     height: 50%;
 }
