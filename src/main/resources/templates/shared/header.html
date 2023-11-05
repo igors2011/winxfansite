@@ -8,12 +8,11 @@
             <li><a th:href="@{/}"><img th:src="@{/img/3.svg}"><div class="header_element">ЗЛОДЕИ</div></a></li>
             <li><a th:href="@{/schools}"><img th:src="@{/img/5.svg}"><div class="header_element">ТЕСТЫ</div></a></li>
             <li><a th:href="@{/}"><img th:src="@{/img/5.svg}"><div class="header_element">ПРОЧЕЕ</div></a></li>
-            <li><form method="get" th:attr="action=@{/search}">
-                <input class="search_field" type="text" name="query" placeholder="ПОИСК"/>
-            </form>
-            </li>
         </ul>
-            <div class="user"><img th:src="@{/img/people.png}"></div>
+        <form name="search" method="get" th:attr="action=@{/search}">
+            <input class="search_field" type="text" name="query" placeholder="ПОИСК"/>
+        </form>
+        <div class="user"><img th:src="@{/img/people.png}"></div>
     </div>
     <!--шапка-->
 </div>
