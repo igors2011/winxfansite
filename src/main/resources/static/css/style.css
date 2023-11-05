@@ -48,9 +48,18 @@ a {
     flex-direction: row;
 }
 
+
+
 img {
-    width: 45px;
-    height: 45px;
+
+}
+
+a img {
+
+}
+
+.img_main img {
+
 }
 
 h1{
