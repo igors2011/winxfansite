@@ -1,25 +1,20 @@
 <div th:fragment="header">
     <!--шапка-->
-    <div class="main">
-        <div class="header-wrapper">
-            <img th:src="@{/img/logo.svg}">
-            <nav>
-                <div class="links">
-                    <a th:href="@{/fairies}"><img th:src="@{/img/1.svg}"> ФЕИ</a>
-                    <a th:href="@{/}"><img th:src="@{/img/2.svg}">СПЕЦИАЛИСТЫ</a>
-                    <a th:href="@{/}"><img th:src="@{/img/3.svg}">ЗЛОДЕИ</a>
-                    <a th:href="@{/schools}"><img th:src="@{/img/5.svg}">ТЕСТЫ</a>
-                    <a th:href="@{/}"><!--<img th:src="@{/img/5.svg}">-->ПРОЧЕЕ</a>
-                </div>
-            </nav>
-            <form method="get" th:attr="action=@{/search}">
-                <div class="search_field">
-                    <img th:src="@{/img/search.svg}">
-                    <input type="text" name="query" placeholder="Поиск" />
-                </div>
+    <div class="header-wrapper">
+        <a class="img_main" th:href="@{/}"><img th:src="@{/img/logo.svg}"></a>
+        <ul class="nav">
+            <li><a th:href="@{/fairies}"><img th:src="@{/img/1.svg}"><div class="header_element">ФЕИ</div></a></li>
+            <li><a th:href="@{/}"><img th:src="@{/img/2.svg}"><div class="header_element">СПЕЦИАЛИСТЫ</div></a></li>
+            <li><a th:href="@{/}"><img th:src="@{/img/3.svg}"><div class="header_element">ЗЛОДЕИ</div></a></li>
+            <li><a th:href="@{/schools}"><img th:src="@{/img/5.svg}"><div class="header_element">ТЕСТЫ</div></a></li>
+            <li><a th:href="@{/}"><img th:src="@{/img/5.svg}"><div class="header_element">ПРОЧЕЕ</div></a></li>
+            <li><form method="get" th:attr="action=@{/search}">
+                <input class="search_field" type="text" name="query" placeholder="ПОИСК"/>
             </form>
+        </ul>
+
             <div class="user"><img th:src="@{/img/people.png}"></div>
-        </div>
+        </ul>
     </div>
     <!--шапка-->
 </div>
