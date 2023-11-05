@@ -1,38 +1,96 @@
-.header-wrapper{
+body {
+    font-family: "Aclonica";
+    font-size: 32px;
+    color: #701F4D;
+}
+
+body .header-wrapper{
     width: 100%;
     height: 100px;
     background-color: #E5419F;
-    left: 0px;
-    top: 0px;
+    left: 0%;
+    top: 0%;
     display: flex;
     position: fixed;
+    min-width: 1000px;
 }
 
-.links a{
+.nav {
+    flex-direction: row;
+    font-size: 24px;
+    margin: 0;
+}
+
+ul {
+    display: flex;
+}
+
+li {
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+    display: flex;
+    flex-direction: row;
+}
+
+form {
+    all: unset;
+}
+
+.img_main{
+    display: flex;
+    margin-right: 10pt;
+}
+
+a {
     color: #fff;
     text-decoration: none;
-    margin-right: 20px;
+    display: flex;
+    flex-direction: row;
 }
 
-.nav{
-    display: inline-block;
-    padding-right: 20px;
+img {
+    width: 45px;
+    height: 45px;
 }
 
 h1{
     font-family: "Aclonica";
     font-size: 64px;
     color: #C23685;
-    top: 10px;
+    padding-top: 100px;
     text-align: center;
-}
-
-.main{
-    font-family: "Aclonica";
-    font-size: 32px;
-    color: #701F4D;
 }
 
 .definition{
     display: flex;
+}
+
+.user{
+    position: absolute;
+    right: 0;
+    text-align: center;
+}
+
+.search_field {
+    font-family: "Aclonica";
+    border-radius: 5px;
+    display: flex;
+    position: relative;
+    background-image: url(../img/search.svg);
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: auto 90%;
+    padding-left: 20pt;
+    float: right;
+    font-size: 18px;
+}
+
+input {
+    border: none;
+    outline: none;
+}
+
+.header_element {
+    /*margin-top: 50%;*/
 }
