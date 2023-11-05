@@ -30,13 +30,18 @@ li {
     padding-right: 2.5%;
     display: flex;
     flex-direction: row;
-    height: 50%;
-    top: 25%;
     position: relative;
 }
 
+li a{
+    height: 50%;
+    margin-top: 35px;
+}
+
 form {
-    all: unset;
+    position: absolute;
+    margin-top: 35px;
+    margin-left: 1130px;
 }
 
 .img_main{
@@ -44,17 +49,22 @@ form {
     margin-right: 10pt;
 }
 
-a {
+.nav a{
     color: #fff;
     text-decoration: none;
     display: flex;
     flex-direction: row;
 }
 
+.selected_nav a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+}
 
-
-img {
-
+.selected_nav {
+    background-color: blueviolet;
 }
 
 a img {
@@ -103,6 +113,6 @@ input {
     outline: none;
 }
 
-.header_element {
-    /*margin-top: 50%;*/
+.nav li:hover {
+    background-color: #992B69;
 }
