@@ -1,0 +1,24 @@
+@media (max-width:1000px) {
+    body .header-wrapper {
+        display: grid;
+        height: unset;
+    }
+    .img_main {
+        width: 35%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .nav {
+        flex-direction: column;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: inherit;
+        padding-right: inherit;
+    }
+    ul {
+        display: none;
+    }
+    .menu_button {
+        display: block;
+    }
+}

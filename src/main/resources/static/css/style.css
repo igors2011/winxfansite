@@ -12,7 +12,6 @@ body .header-wrapper{
     top: 0%;
     display: flex;
     position: fixed;
-    min-width: 1000px;
 }
 
 .nav {
@@ -115,4 +114,8 @@ input {
 
 .nav li:hover {
     background-color: #992B69;
+}
+
+.menu_button {
+    display: none;
 }

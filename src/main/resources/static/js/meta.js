@@ -1,4 +1,4 @@
-window.addEventListener('load',onLoad,false);
+window.addEventListener("load", onLoad, false);
 
 function getPathName() {
     var a = document.createElement('a');

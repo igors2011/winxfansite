@@ -2,7 +2,7 @@
     <!--шапка-->
     <div class="header-wrapper">
         <a class="img_main" th:href="@{/}"><img th:src="@{/img/logo.svg}"></a>
-        <ul class="nav">
+        <ul id="menu_list" class="nav">
             <li id="fairies"><a th:href="@{/fairies}"><img th:src="@{/img/1.svg}"><div class="header_element">ФЕИ</div></a></li>
             <li id="specialists"><a th:href="@{/}"><img th:src="@{/img/2.svg}"><div class="header_element">СПЕЦИАЛИСТЫ</div></a></li>
             <li id="villains"><a th:href="@{/}"><img th:src="@{/img/3.svg}"><div class="header_element">ЗЛОДЕИ</div></a></li>
@@ -12,7 +12,9 @@
         <form name="search" method="get" th:attr="action=@{/search}">
             <input class="search_field" type="text" name="query" placeholder="ПОИСК"/>
         </form>
+        <button class="menu_button" id="open_menu">O</button>
         <div class="user"><img th:src="@{/img/people.png}"></div>
     </div>
+    <script th:src="@{/js/header_script.js}"></script>
     <!--шапка-->
 </div>
