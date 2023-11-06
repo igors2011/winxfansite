@@ -18,7 +18,7 @@ public class ArticleAccess {
         try {
             var connection = DBConnection.getConnection();
             Statement statement = connection.createStatement();
-            String SQLQuery = "SELECT * FROM articles WHERE type = '" + articleType + "'";
+            String SQLQuery = "SELECT * FROM articles WHERE type = '" + articleType + "';";
             ResultSet resultSet = statement.executeQuery(SQLQuery);
             while (resultSet.next()) {
                 Article newArticle = resultSetToArticle(resultSet);
@@ -36,7 +36,7 @@ public class ArticleAccess {
         try {
             var connection = DBConnection.getConnection();
             Statement statement = connection.createStatement();
-            String SQLQuery = "SELECT * FROM articles WHERE id = '" + id + "'";
+            String SQLQuery = "SELECT * FROM articles WHERE id = '" + id + "';";
             ResultSet resultSet = statement.executeQuery(SQLQuery);
             while (resultSet.next()) {
                 result = resultSetToArticle(resultSet);
@@ -52,7 +52,7 @@ public class ArticleAccess {
         try {
             var connection = DBConnection.getConnection();
             Statement statement = connection.createStatement();
-            String SQLQuery = "SELECT * FROM articles WHERE header = '" + header + "'";
+            String SQLQuery = "SELECT * FROM articles WHERE header = '" + header + "';";
             ResultSet resultSet = statement.executeQuery(SQLQuery);
             while (resultSet.next()) {
                 result = new Article(resultSet.getInt("id"), resultSet.getString("header"), resultSet.getString("shortdescr"), resultSet.getString("longdescr"), resultSet.getString("type"), resultSet.getString("author"));

@@ -18,7 +18,7 @@ public class SearchAccess {
         try {
             var connection = DBConnection.getConnection();
             Statement statement = connection.createStatement();
-            String SQLQuery = "SELECT * FROM articles WHERE header LIKE '%" + query + "%'";
+            String SQLQuery = "SELECT * FROM articles WHERE UPPER(header) LIKE UPPER('%" + query + "%');";
             ResultSet resultSet = statement.executeQuery(SQLQuery);
             while (resultSet.next()) {
                 Article newArticle = ArticleAccess.resultSetToArticle(resultSet);
