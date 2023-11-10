@@ -1,4 +1,7 @@
 @media (max-width:1000px) {
+
+
+
     body .header-wrapper {
         display: grid;
         height: unset;
@@ -14,11 +17,26 @@
         margin-right: auto;
         padding-left: inherit;
         padding-right: inherit;
+        overflow: hidden;
+        max-height: 1000px;
+        transition: max-height 0.3s cubic-bezier(1, 0, 1, 0);
     }
-    ul {
-        display: none;
+    .nav_hide {
+        flex-direction: column;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: inherit;
+        padding-right: inherit;
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
     }
+
     .menu_button {
         display: block;
     }
+
+    body {
+            font-size: 12px;
+        }
 }

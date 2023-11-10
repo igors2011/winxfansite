@@ -55,6 +55,13 @@ form {
     flex-direction: row;
 }
 
+.nav_hide a{
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+}
+
 .selected_nav a {
     color: #fff;
     text-decoration: none;
