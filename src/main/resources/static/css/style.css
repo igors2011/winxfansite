@@ -38,9 +38,9 @@ a li{
 }
 
 form {
-    position: absolute;
+    float: right;
     margin-top: 35px;
-    margin-left: 1130px;
+    margin-left: 10px;
 }
 
 .img_main{
@@ -70,7 +70,7 @@ form {
 }
 
 .selected_nav {
-    background-color: blueviolet;
+    background-color: rgba(255, 255, 255, 0.16);
 }
 
 a img {
@@ -96,14 +96,13 @@ h1{
 .user{
     position: absolute;
     right: 0;
-    text-align: center;
+    margin-top: 15px;
 }
 
 .search_field {
     font-family: "Aclonica";
     border-radius: 5px;
     display: flex;
-    position: relative;
     background-image: url(../img/search.svg);
     background-color: #fff;
     background-repeat: no-repeat;

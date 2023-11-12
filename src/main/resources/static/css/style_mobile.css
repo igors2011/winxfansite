@@ -1,16 +1,16 @@
 @media (max-width:1000px) {
 
-
-
     body .header-wrapper {
         display: grid;
         height: unset;
     }
+
     .img_main {
         width: 35%;
         margin-left: auto;
         margin-right: auto;
     }
+
     .nav {
         flex-direction: column;
         margin-left: auto;
@@ -21,6 +21,7 @@
         max-height: 1000px;
         transition: max-height 0.3s cubic-bezier(1, 0, 1, 0);
     }
+
     .nav_hide {
         flex-direction: column;
         margin-left: auto;
@@ -37,6 +38,15 @@
     }
 
     body {
-            font-size: 12px;
-        }
+        font-size: 12px;
+    }
+
+    form, ul a {
+        display: flex;
+        justify-content: center;
+    }
+
+    ul {
+        width: 100%;
+    }
 }
