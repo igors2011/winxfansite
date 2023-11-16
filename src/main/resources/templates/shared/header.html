@@ -7,9 +7,9 @@
             <a th:href="@{/}" id="specialists"><li><img th:src="@{/img/2.svg}"><div class="header_element">СПЕЦИАЛИСТЫ</div></li></a>
             <a th:href="@{/}" id="villains"><li><img th:src="@{/img/3.svg}"><div class="header_element">ЗЛОДЕИ</div></li></a>
             <a th:href="@{/schools}" id="schools"><li><img th:src="@{/img/5.svg}"><div class="header_element">ТЕСТЫ</div></li></a>
-            <a th:href="@{/}" id="others"><li><img th:src="@{/img/5.svg}"><div class="header_element">ПРОЧЕЕ</div></li></a>
+            <a th:href="@{/}" id="others"><li><img th:src="@{/img/4.svg}"><div class="header_element">ПРОЧЕЕ</div></li></a>
         </ul>
-        <form name="search" method="get" th:attr="action=@{/search}">
+        <form id="search_form" name="search" method="get" th:attr="action=@{/search}">
             <input class="search_field" type="text" name="query" placeholder="ПОИСК"/>
         </form>
         <button class="menu_button" id="open_menu">O</button>
