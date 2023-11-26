@@ -10,10 +10,15 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.winxfansite</groupId>
-	<artifactId>fansite-user-mvc</artifactId>
+	<artifactId>fansite</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
 	<name>fansite</name>
 	<description>Сайт фанатов Винкс</description>
+	<modules>
+		<module>models</module>
+		<module>user-mvc</module>
+	</modules>
 	<properties>
 		<java.version>21</java.version>
 	</properties>

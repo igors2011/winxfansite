@@ -14,7 +14,7 @@ public class DBConnection
 {
     public static Connection getConnection() throws SQLException, IOException {
         Properties props = new Properties();
-        try(InputStream in = Files.newInputStream(Paths.get("src/main/settings/dbconnection.properties"))){
+        try(InputStream in = Files.newInputStream(Paths.get("user-mvc/src/main/resources/settings/dbconnection.properties"))){
             props.load(in);
         }
         String url = props.getProperty("url");
