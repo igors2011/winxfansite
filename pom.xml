@@ -10,7 +10,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.winxfansite</groupId>
-	<artifactId>fansite</artifactId>
+	<artifactId>fansite-user-mvc</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>fansite</name>
 	<description>Сайт фанатов Винкс</description>
