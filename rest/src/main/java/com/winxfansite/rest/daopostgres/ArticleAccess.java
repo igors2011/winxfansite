@@ -1,10 +1,12 @@
-package com.winxfansite.fansite.daopostgres;
+package com.winxfansite.rest.daopostgres;
 
 import models.Article;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 

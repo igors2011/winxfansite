@@ -10,16 +10,6 @@ public class Article
     private String author;
     private String URL;
 
-    public Article(int id, String header, String shortDescr, String longDescr, String type, String author) {
-        this.id = id;
-        this.header = header;
-        this.shortDescr = shortDescr;
-        this.longDescr = longDescr;
-        this.type = type;
-        this.author = author;
-        this.URL = type + "/" + header;
-    }
-
     public int getId() {
         return id;
     }
@@ -70,5 +60,9 @@ public class Article
 
     public String getURL() {
         return URL;
+    }
+
+    public void setURL(String URL) {
+        this.URL = URL;
     }
 }
