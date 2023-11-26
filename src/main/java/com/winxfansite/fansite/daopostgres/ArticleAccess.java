@@ -1,6 +1,6 @@
 package com.winxfansite.fansite.daopostgres;
 
-import com.winxfansite.fansite.models.Article;
+import models.Article;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;

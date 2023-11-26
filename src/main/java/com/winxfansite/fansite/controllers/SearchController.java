@@ -1,7 +1,7 @@
 package com.winxfansite.fansite.controllers;
 
 import com.winxfansite.fansite.daopostgres.SearchAccess;
-import com.winxfansite.fansite.models.Article;
+import models.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
