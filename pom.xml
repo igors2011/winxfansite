@@ -18,6 +18,7 @@
 	<modules>
 		<module>models</module>
 		<module>user-mvc</module>
+		<module>rest</module>
 	</modules>
 	<properties>
 		<java.version>21</java.version>

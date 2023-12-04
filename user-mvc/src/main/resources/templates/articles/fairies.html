@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:insert="~{shared/meta :: meta}"></div>
+    <title>Феи</title>
+</head>
+<body>
+    <div th:insert="~{shared/header :: header}"></div>
+    <div th:each="article : ${allFairies}">
+        <h1>
+            <a th:href="@{{URL}(URL=${article.getURL()})}" th:text="${article.getHeader()}"></a>
+        </h1>
+        <div th:text="${article.getShortDescr()}"></div>
+    </div>
+</body>
+</html>
