@@ -1,6 +1,6 @@
-package com.winxfansite.fansite.controllers;
+package com.winxfansite.usermvc.controllers;
 
-import com.winxfansite.fansite.daopostgres.SearchAccess;
+import com.winxfansite.usermvc.daopostgres.SearchAccess;
 import models.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

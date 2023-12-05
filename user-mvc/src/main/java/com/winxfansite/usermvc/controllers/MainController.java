@@ -1,4 +1,4 @@
-package com.winxfansite.fansite.controllers;
+package com.winxfansite.usermvc.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
