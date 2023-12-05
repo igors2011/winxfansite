@@ -1,4 +1,4 @@
-package com.winxfansite.fansite.daopostgres;
+package com.winxfansite.usermvc.daopostgres;
 
 import models.Article;
 import org.springframework.stereotype.Component;
@@ -18,7 +18,7 @@ public class ArticleAccess {
         result.setLongDescr(resultSet.getString("longdescr"));
         result.setType(resultSet.getString("type"));
         result.setAuthor(resultSet.getString("author"));
-        result.setURL(result.getType() + "/" + result.getHeader());
+        result.setURL("/articles/" + result.getType() + "/" + result.getHeader());
         return result;
     }
     public List<Article> getArticlesByType(String articleType) {

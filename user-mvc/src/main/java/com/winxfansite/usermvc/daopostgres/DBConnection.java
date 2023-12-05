@@ -1,4 +1,4 @@
-package com.winxfansite.rest.daopostgres;
+package com.winxfansite.usermvc.daopostgres;
 
 
 import java.io.IOException;
