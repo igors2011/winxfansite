@@ -8,7 +8,6 @@
     <div th:insert="~{shared/header :: header}"></div>
     <h1 th:text="${article.getHeader()}"></h1>
     <div>
-        <h2>Категория:</h2>
         <h2 th:text="'Категория: ' + ${article.getViewType()}"></h2>
     </div>
     <div th:text="${article.getLongDescr()}"></div>
