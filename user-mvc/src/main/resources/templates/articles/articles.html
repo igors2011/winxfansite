@@ -6,6 +6,7 @@
 </head>
 <body>
 <div th:insert="~{shared/header :: header}"></div>
+<a th:href="@{/editor/add}">Добавить статью</a>
 <div th:each="article : ${allArticles}">
     <h1>
         <a th:href="@{{URL}(URL=${article.getURL()})}" th:text="${article.getHeader()}"></a>

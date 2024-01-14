@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:insert="~{shared/meta :: meta}"></div>
+    <title>Редактирование статьи</title>
+</head>
+<body>
+<div th:insert="~{shared/header :: header}"></div>
+<form action="#" th:action="@{/editor/edit}" th:object="${article}" method="post">
+    <p>Название: <input type="text" th:field="*{header}" /></p>
+    <p>Краткое описание: <input type="text" th:field="*{shortDescr}" /></p>
+    <p>Содержание: <input type="text" th:field="*{longDescr}" /></p>
+    <p>
+        Категория:
+        <select th:field="*{type}">
+            <option th:text="Феи" th:value="fairies"></option>
+            <option th:text="Школы" th:value="schools"></option>
+        </select>
+    </p>
+    <p>Автор: <input type="text" th:field="*{author}" /></p>
+    <input type="text" th:hidden="true" th:field="*{id}" th:value="${article.getHeader()}" />
+    <p><input type="submit" value="Сохранить" /></p>
+</form>
+<form action="#" th:action="@{/editor/delete}" th:object="${article}" method="post">
+    <input type="text" th:hidden="true" th:field="*{id}" th:value="${article.getHeader()}" />
+    <p><input type="submit" value="Удалить" /></p>
+</form>
+</body>
+</html>
