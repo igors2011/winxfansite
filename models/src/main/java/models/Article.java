@@ -9,6 +9,14 @@ public class Article
     private String type;
     private String author;
     private String URL;
+    private String viewType;
+    public String getViewType() {
+        return viewType;
+    }
+
+    public void setViewType(String viewType) {
+        this.viewType = viewType;
+    }
 
     public int getId() {
         return id;

@@ -18,7 +18,32 @@ public class ArticleAccess {
         result.setLongDescr(resultSet.getString("longdescr"));
         result.setType(resultSet.getString("type"));
         result.setAuthor(resultSet.getString("author"));
-        result.setURL("/articles/" + result.getType() + "/" + result.getHeader());
+        result.setURL("/articles/" + result.getHeader());
+        switch (result.getType()) {
+            case "fairies":
+                result.setViewType("Феи");
+                break;
+            case "schools":
+                result.setViewType("Школы");
+                break;
+        }
+        return result;
+    }
+    public List<Article> getAllArticles() {
+        List<Article> result = new ArrayList<>();
+        try {
+            var connection = DBConnection.getConnection();
+            Statement statement = connection.createStatement();
+            String query = "SELECT * FROM articles ORDER BY type;";
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                Article newArticle = resultSetToArticle(resultSet);
+                result.add(newArticle);
+            }
+            connection.close();
+        } catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
+        }
         return result;
     }
     public List<Article> getArticlesByType(String articleType) {
@@ -26,8 +51,8 @@ public class ArticleAccess {
         try {
             var connection = DBConnection.getConnection();
             Statement statement = connection.createStatement();
-            String SQLQuery = "SELECT * FROM articles WHERE type = '" + articleType + "';";
-            ResultSet resultSet = statement.executeQuery(SQLQuery);
+            String query = "SELECT * FROM articles WHERE type = '" + articleType + "';";
+            ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 Article newArticle = resultSetToArticle(resultSet);
                 result.add(newArticle);
@@ -44,8 +69,8 @@ public class ArticleAccess {
         try {
             var connection = DBConnection.getConnection();
             Statement statement = connection.createStatement();
-            String SQLQuery = "SELECT * FROM articles WHERE id = '" + id + "';";
-            ResultSet resultSet = statement.executeQuery(SQLQuery);
+            String query = "SELECT * FROM articles WHERE id = '" + id + "';";
+            ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 result = resultSetToArticle(resultSet);
             }
@@ -60,8 +85,8 @@ public class ArticleAccess {
         try {
             var connection = DBConnection.getConnection();
             Statement statement = connection.createStatement();
-            String SQLQuery = "SELECT * FROM articles WHERE header = '" + header + "';";
-            ResultSet resultSet = statement.executeQuery(SQLQuery);
+            String query = "SELECT * FROM articles WHERE header = '" + header + "';";
+            ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 result = resultSetToArticle(resultSet);
             }
