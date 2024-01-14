@@ -18,12 +18,16 @@
         </select>
     </p>
     <p>Автор: <input type="text" th:field="*{author}" /></p>
-    <input type="text" th:hidden="true" th:field="*{id}" th:value="${article.getHeader()}" />
+    <input type="text" th:hidden="true" th:field="*{id}" />
     <p><input type="submit" value="Сохранить" /></p>
 </form>
-<form action="#" th:action="@{/editor/delete}" th:object="${article}" method="post">
-    <input type="text" th:hidden="true" th:field="*{id}" th:value="${article.getHeader()}" />
-    <p><input type="submit" value="Удалить" /></p>
+<button id="open_close_deletion_form">Удалить</button>
+<form class="deletion_form_hidden" id="deletion_form" action="#" th:action="@{/editor/delete}" th:object="${article}" method="post">
+    <p>Вы уверены, что хотите удалить статью?</p>
+    <input type="text" th:hidden="true" th:field="*{id}" />
+    <p><input type="button" value="Нет" id="delete_abortion"></input></p>
+    <p><input type="submit" value="Да" /></p>
 </form>
+<script th:src="@{/js/delete_confirm.js}"></script>
 </body>
 </html>

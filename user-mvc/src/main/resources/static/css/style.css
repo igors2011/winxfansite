@@ -125,3 +125,10 @@ input {
 .menu_button {
     display: none;
 }
+
+.deletion_form {
+    display: inline-block;
+}
+.deletion_form_hidden {
+    display: none;
+}
