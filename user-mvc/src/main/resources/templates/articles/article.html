@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <div th:insert="~{shared/meta :: meta}"></div>
-    <title th:text="${article.getHeader()}"></title>
-</head>
-<body>
-    <div th:insert="~{shared/header :: header}"></div>
-    <h1 th:text="${article.getHeader()}"></h1>
-    <div>
-        <h2 th:text="'Категория: ' + ${article.getViewType()}"></h2>
-    </div>
-    <div th:text="${article.getLongDescr()}"></div>
-    <a th:href = "@{'/editor/edit/' + ${article.getHeader()}}">Редактировать</a>
-</body>
+    <head>
+        <div th:insert="~{shared/meta :: meta}"></div>
+        <title th:text="${article.getHeader()}"></title>
+    </head>
+    <body>
+        <div class="head">
+            <div th:insert="~{shared/header :: header}"></div>
+        </div>
+        <h1 th:text="${article.getHeader()}"></h1>
+        <div>
+            <h2 th:text="'Категория: ' + ${article.getViewType()}"></h2>
+        </div>
+        <div th:text="${article.getLongDescr()}"></div>
+        <a th:href = "@{'/editor/edit/' + ${article.getHeader()}}">Редактировать</a>
+    </body>
 </html>

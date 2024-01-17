@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <div th:insert="~{shared/meta :: meta}"></div>
-    <title>Статьи</title>
-</head>
-<body>
-<div th:insert="~{shared/header :: header}"></div>
-<a th:href="@{/editor/add}">Добавить статью</a>
-<div th:each="article : ${allArticles}">
-    <h1>
-        <a th:href="@{{URL}(URL=${article.getURL()})}" th:text="${article.getHeader()}"></a>
-    </h1>
-    <div th:text="${article.getShortDescr()}"></div>
-    <a th:href="@{{category}(category=${article.getType()})}" th:text="${article.getViewType()}"></a>
-</div>
-</body>
+    <head>
+        <div th:insert="~{shared/meta :: meta}"></div>
+        <title>Статьи</title>
+    </head>
+    <body>
+        <div class="head">
+            <div th:insert="~{shared/header :: header}"></div>
+        </div>
+        <a th:href="@{/editor/add}">Добавить статью</a>
+        <div th:each="article : ${allArticles}">
+            <h1>
+                <a th:href="@{{URL}(URL=${article.getURL()})}" th:text="${article.getHeader()}"></a>
+            </h1>
+            <div th:text="${article.getShortDescr()}"></div>
+            <a th:href="@{{category}(category=${article.getType()})}" th:text="${article.getViewType()}"></a>
+        </div>
+    </body>
 </html>
