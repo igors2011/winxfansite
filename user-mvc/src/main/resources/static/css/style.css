@@ -4,14 +4,16 @@ body {
     color: #701F4D;
 }
 
+.head{
+    position: sticky;
+    top: 0;
+}
+
 body .header-wrapper{
     width: 100%;
     height: 100px;
     background-color: #E5419F;
-    left: 0%;
-    top: 0%;
     display: flex;
-    position: fixed;
 }
 
 .nav {
@@ -85,7 +87,6 @@ h1{
     font-family: "Aclonica";
     font-size: 64px;
     color: #C23685;
-    padding-top: 100px;
     text-align: center;
 }
 

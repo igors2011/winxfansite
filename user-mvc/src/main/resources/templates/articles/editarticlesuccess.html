@@ -1,14 +1,16 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <div th:insert="~{shared/meta :: meta}"></div>
-    <title>Статья успешно отредактирована!</title>
-</head>
+    <head>
+        <div th:insert="~{shared/meta :: meta}"></div>
+        <title>Статья успешно отредактирована!</title>
+    </head>
 
-<body>
-<div th:insert="~{shared/header :: header}"></div>
-<h1>Статья успешно отредактирована!</h1>
-<a th:href="@{/articles}">К списку статей</a>
-</body>
+    <body>
+        <div class="head">
+            <div th:insert="~{shared/header :: header}"></div>
+        </div>
+        <h1>Статья успешно отредактирована!</h1>
+        <a th:href="@{/articles}">К списку статей</a>
+    </body>
 </html>

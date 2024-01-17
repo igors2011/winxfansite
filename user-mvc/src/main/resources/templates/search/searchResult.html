@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <div th:insert="~{shared/meta :: meta}"></div>
-    <title>Результаты поиска</title>
-</head>
-<body>
-    <div th:insert="~{shared/header :: header}"></div>
-    <div>Найденные статьи:</div>
-    <div th:each="article : ${searchResult}">
-        <h1>
-            <a th:href="@{{URL}(URL=${article.getURL()})}"><div th:text="${article.getHeader()}"></div></a>
-        </h1>
-        <div th:text="${article.getShortDescr()}"></div>
-    </div>
-</body>
+    <head>
+        <div th:insert="~{shared/meta :: meta}"></div>
+        <title>Результаты поиска</title>
+    </head>
+    <body>
+        <div class="head">
+            <div th:insert="~{shared/header :: header}"></div>
+        </div>
+        <div>Найденные статьи:</div>
+        <div th:each="article : ${searchResult}">
+            <h1>
+                <a th:href="@{{URL}(URL=${article.getURL()})}"><div th:text="${article.getHeader()}"></div></a>
+            </h1>
+            <div th:text="${article.getShortDescr()}"></div>
+        </div>
+    </body>
 </html>

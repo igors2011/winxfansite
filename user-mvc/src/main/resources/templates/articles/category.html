@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <div th:insert="~{shared/meta :: meta}"></div>
-    <title th:text="@{category}"></title>
-</head>
-<body>
-<div th:insert="~{shared/header :: header}"></div>
-<div th:each="article : ${articlesByCategory}">
-    <h1>
-        <a th:href="@{{URL}(URL=${article.getURL()})}" th:text="${article.getHeader()}"></a>
-    </h1>
-    <div th:text="${article.getShortDescr()}"></div>
-</div>
-</body>
+    <head>
+        <div th:insert="~{shared/meta :: meta}"></div>
+        <title th:text="@{category}"></title>
+    </head>
+    <body>
+        <div class="head">
+            <div th:insert="~{shared/header :: header}"></div>
+        </div>
+        <div th:each="article : ${articlesByCategory}">
+            <h1>
+                <a th:href="@{{URL}(URL=${article.getURL()})}" th:text="${article.getHeader()}"></a>
+            </h1>
+            <div th:text="${article.getShortDescr()}"></div>
+        </div>
+    </body>
 </html>
