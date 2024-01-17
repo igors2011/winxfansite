@@ -2,6 +2,7 @@ package com.winxfansite.admin.controllers;
 
 import com.winxfansite.admin.dao.ArticleAccess;
 import com.winxfansite.admin.dao.LogAccess;
+import com.winxfansite.admin.dao.UserAccess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -16,10 +17,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AdminController {
     private final ArticleAccess articleAccess;
     private final LogAccess logAccess;
+    private final UserAccess userAccess;
     @Autowired
-    public AdminController(ArticleAccess articleAccess, LogAccess logAccess) {
+    public AdminController(ArticleAccess articleAccess, LogAccess logAccess, UserAccess userAccess) {
         this.articleAccess = articleAccess;
         this.logAccess = logAccess;
+        this.userAccess = userAccess;
     }
     @GetMapping(value = {"", "/", "/articles"})
     public String articles(Model model) {
@@ -39,5 +42,11 @@ public class AdminController {
         model.addAttribute("type", type);
         model.addAttribute("logsByType", logsByType);
         return "logs/logsbytype";
+    }
+    @GetMapping("/users")
+    public String users(Model model) {
+        var allUsers = userAccess.getAllUsers();
+        model.addAttribute("allUsers", allUsers);
+        return "/users/users";
     }
 }
