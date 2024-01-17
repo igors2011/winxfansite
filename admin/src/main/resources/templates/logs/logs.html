@@ -6,7 +6,7 @@
 </head>
 <body>
 <div th:insert="~{shared/header :: header}"></div>
-<form id="formLogs" action="#" th:action="@{/logs/type}" method="get">
+<form id="formLogs" action="#" th:action="@{/admin/logs/type}" method="get">
     <select id="type" name="type">
         <option value="all">Все</option>
         <option value="message">Сообщения</option>

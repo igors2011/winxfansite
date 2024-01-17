@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
@@ -36,22 +37,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/user/**").hasRole("user")
-                .antMatchers("/admin/**").hasRole("admin")
-                .antMatchers("/temp/**").permitAll()
-                .anyRequest().authenticated()
-                .and()
+                    .antMatchers("/css/**").permitAll()
+                    .antMatchers("/js/**").permitAll()
+                    .antMatchers("/img/**").permitAll()
+                    .antMatchers("/temp/**").permitAll()
+                    .antMatchers("/admin/**").hasRole("admin")
+                    .anyRequest().authenticated()
+                    .and()
                 .formLogin()
-                .loginPage("/account/login")
-                .defaultSuccessUrl("/admin")
-                .failureUrl("/account/authfail")
-                .failureForwardUrl("/account/authfail")
-                .permitAll()
-                .and()
+                    .loginPage("/login")
+                    .defaultSuccessUrl("/admin")
+                    .permitAll()
+                    .and()
                 .logout()
-                .logoutUrl("/logout")
-                .permitAll()
-                .and()
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                    .logoutSuccessUrl("/login")
+                    .deleteCookies("JSESSIONID")
+                    .invalidateHttpSession(true)
+                    .and()
                 .httpBasic();
     }
     @Bean
