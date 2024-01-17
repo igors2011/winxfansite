@@ -29,14 +29,15 @@ public class ArticleAccess {
         }
         return result;
     }
-    public static PreparedStatement prepareArticleForInsert(Connection connection, Article article) {
+    private static PreparedStatement prepareArticleForInsert(Connection connection, Article article) {
         try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO articles (header, shortdescr, longdescr, type, author) VALUES (?, ?, ?, ?, ?)");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO articles (header, shortdescr, longdescr, type, author, visits) VALUES (?, ?, ?, ?, ?, ?)");
             statement.setString(1, article.getHeader());
             statement.setString(2, article.getShortDescr());
             statement.setString(3, article.getLongDescr());
             statement.setString(4, article.getType());
             statement.setString(5, article.getAuthor());
+            statement.setInt(6, 0);
             return statement;
         }
         catch (Exception e)
@@ -44,7 +45,7 @@ public class ArticleAccess {
             throw  new RuntimeException(e);
         }
     }
-    public static PreparedStatement prepareArticleForUpdate(Connection connection, Article article) {
+    private static PreparedStatement prepareArticleForUpdate(Connection connection, Article article) {
         try {
             PreparedStatement statement = connection.prepareStatement("UPDATE articles SET (header, shortdescr, longdescr, type, author) = (?, ?, ?, ?, ?) WHERE id = " + article.getId() + ";");
             statement.setString(1, article.getHeader());
@@ -59,7 +60,7 @@ public class ArticleAccess {
             throw  new RuntimeException(e);
         }
     }
-    public static PreparedStatement prepareArticleForDelete(Connection connection, int id) {
+    private static PreparedStatement prepareArticleForDelete(Connection connection, int id) {
         try {
             return connection.prepareStatement("DELETE FROM articles WHERE id = " + id + ";");
         } catch (Exception e) {
@@ -131,22 +132,6 @@ public class ArticleAccess {
         return result;
     }
 
-    public Article getArticleById(int id) {
-        Article result = null;
-        try {
-            var connection = DBConnection.getConnection();
-            Statement statement = connection.createStatement();
-            String query = "SELECT * FROM articles WHERE id = '" + id + "';";
-            ResultSet resultSet = statement.executeQuery(query);
-            while (resultSet.next()) {
-                result = resultSetToArticle(resultSet);
-            }
-            connection.close();
-        } catch (SQLException | IOException e) {
-            throw new RuntimeException(e);
-        }
-        return result;
-    }
     public Article getArticleByHeader(String header) {
         Article result = null;
         try {
@@ -162,5 +147,27 @@ public class ArticleAccess {
             throw new RuntimeException(e);
         }
         return result;
+    }
+    private static PreparedStatement prepareIncreasingVisits(Connection connection, Article article) {
+        try {
+            return connection.prepareStatement("UPDATE articles SET visits = visits + 1 WHERE id = " + article.getId() + ";");
+        }
+        catch (Exception e)
+        {
+            throw  new RuntimeException(e);
+        }
+    }
+    public void increaseVisits(Article article) {
+        try {
+            Connection connection = DBConnection.getConnection();
+            PreparedStatement preparedArticle = prepareIncreasingVisits(connection, article);
+            preparedArticle.executeUpdate();
+            preparedArticle.close();
+            connection.close();
+        }
+        catch (SQLException | IOException e)
+        {
+            throw new RuntimeException(e);
+        }
     }
 }

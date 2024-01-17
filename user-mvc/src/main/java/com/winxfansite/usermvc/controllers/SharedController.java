@@ -38,6 +38,7 @@ public class SharedController {
     @GetMapping("articles/{articleName}")
     public String article(@PathVariable("articleName") String articleName, Model model) {
         var article = articleAccess.getArticleByHeader(articleName);
+        articleAccess.increaseVisits(article);
         model.addAttribute("article", article);
         return "articles/article";
     }
