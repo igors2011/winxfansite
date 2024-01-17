@@ -78,11 +78,23 @@ public class ArticleAccess {
                 preparedArticle = prepareArticleForUpdate(connection, article);
             }
             preparedArticle.executeUpdate();
+            if (!action) {
+                LogAccess.logInfo("Статья с названием " + article.getHeader() +  "добавлена");
+            }
+            else {
+                LogAccess.logInfo("Статья с названием " + article.getHeader() +  "отредактирована");
+            }
             preparedArticle.close();
             connection.close();
         }
         catch (SQLException | IOException e)
         {
+            if (!action) {
+                LogAccess.logError("Ошибка при добавлении статьи" + article.getHeader());
+            }
+            else {
+                LogAccess.logError("Ошибка при редактировании статьи" + article.getHeader());
+            }
             throw new RuntimeException(e);
         }
     }
@@ -91,9 +103,11 @@ public class ArticleAccess {
             var connection = DBConnection.getConnection();
             PreparedStatement preparedArticle = prepareArticleForDelete(connection, id);
             preparedArticle.executeUpdate();
+            LogAccess.logInfo("Статья с id " + id + "удалена");
             preparedArticle.close();
             connection.close();
         } catch (SQLException | IOException e) {
+            LogAccess.logError("Ошибка при удалении статьи с id " + id);
             throw new RuntimeException(e);
         }
     }
@@ -104,12 +118,14 @@ public class ArticleAccess {
             Statement statement = connection.createStatement();
             String query = "SELECT * FROM articles ORDER BY type;";
             ResultSet resultSet = statement.executeQuery(query);
+            LogAccess.logInfo("Получен полный список статей");
             while (resultSet.next()) {
                 Article newArticle = resultSetToArticle(resultSet);
                 result.add(newArticle);
             }
             connection.close();
         } catch (SQLException | IOException e) {
+            LogAccess.logError("Ошибка при получении полного списка статей");
             throw new RuntimeException(e);
         }
         return result;
@@ -121,12 +137,14 @@ public class ArticleAccess {
             Statement statement = connection.createStatement();
             String query = "SELECT * FROM articles WHERE type = '" + articleType + "';";
             ResultSet resultSet = statement.executeQuery(query);
+            LogAccess.logInfo("Получен список статей категории " + articleType);
             while (resultSet.next()) {
                 Article newArticle = resultSetToArticle(resultSet);
                 result.add(newArticle);
             }
             connection.close();
         } catch (SQLException | IOException e) {
+            LogAccess.logError("Ошибка при получении списка статей категории " + articleType);
             throw new RuntimeException(e);
         }
         return result;
@@ -139,11 +157,13 @@ public class ArticleAccess {
             Statement statement = connection.createStatement();
             String query = "SELECT * FROM articles WHERE header = '" + header + "';";
             ResultSet resultSet = statement.executeQuery(query);
+            LogAccess.logInfo("Получена статья с заголовком " + header);
             while (resultSet.next()) {
                 result = resultSetToArticle(resultSet);
             }
             connection.close();
         } catch (SQLException | IOException e) {
+            LogAccess.logError("Ошибка при получении статьи с заголовком " + header);
             throw new RuntimeException(e);
         }
         return result;
@@ -167,6 +187,7 @@ public class ArticleAccess {
         }
         catch (SQLException | IOException e)
         {
+            LogAccess.logError("Ошибка при увеличении числа просмотров статьи с id = " + article.getId());
             throw new RuntimeException(e);
         }
     }

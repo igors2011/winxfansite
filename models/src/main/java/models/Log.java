@@ -1,17 +1,18 @@
 package models;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Log {
     private int id;
 
-    public Log(Date date, String type, String message) {
+    public Log(Timestamp date, String type, String message) {
         this.date = date;
         this.type = type;
         this.message = message;
     }
 
-    private Date date;
+    private Timestamp date;
     private String type;
     private String message;
 
@@ -22,11 +23,11 @@ public class Log {
     public void setId(int id) {
         this.id = id;
     }
-    public Date getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 
@@ -44,5 +45,8 @@ public class Log {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+    public String getDateDescr() {
+        return "" + getDate();
     }
 }

@@ -4,16 +4,15 @@ import models.Log;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.Date;
 
 @Component
 public class LogAccess {
     public static PreparedStatement prepareLog(Connection connection, Log log) {
         try {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO logs (date, type, message) VALUES (?, ?, ?)");
-            statement.setDate(1, log.getDate());
+            statement.setTimestamp(1, log.getDate());
             statement.setString(2, log.getType());
             statement.setString(3, log.getMessage());
             return statement;
@@ -23,7 +22,7 @@ public class LogAccess {
             throw  new RuntimeException(e);
         }
     }
-    public void insertLog(Log log) {
+    public static void insertLog(Log log) {
         try {
             Connection connection = DBConnection.getConnection();
             PreparedStatement preparedLog = prepareLog(connection, log);
@@ -35,5 +34,11 @@ public class LogAccess {
         {
             throw new RuntimeException(e);
         }
+    }
+    public static void logInfo(String message) {
+        insertLog(new Log(new Timestamp(new Date().getTime()), "message", message));
+    }
+    public static void logError(String message) {
+        insertLog(new Log(new Timestamp(new Date().getTime()), "error", message));
     }
 }

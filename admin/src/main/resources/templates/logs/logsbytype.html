@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:insert="~{shared/meta :: meta}"></div>
+    <title>Логи</title>
+</head>
+<body>
+<div th:insert="~{shared/header :: header}"></div>
+<form id="formLogs" action="#" th:action="@{/logs/type}" method="get">
+    <select id="type" name="type">
+        <option th:selected="${type == 'all'}" value="all">Все</option>
+        <option th:selected="${type == 'message'}" value="message">Сообщения</option>
+        <option th:selected="${type == 'error'}" value="error">Ошибки</option>
+    </select>
+</form>
+<table>
+    <tr><th>Дата</th><th>Тип</th><th>Сообщение</th></tr>
+    <tr th:each="log : ${logsByType}"><td th:text="@{${log.getDateDescr()}}"></td><td th:text="@{${log.getType()}}"></td><td th:text="@{${log.getMessage()}}"></td></tr>
+</table>
+</body>
+<script th:inline="javascript">
+    document.getElementById('type').addEventListener('change', function() {
+        document.getElementById('formLogs').submit();
+    });
+</script>
+</html>

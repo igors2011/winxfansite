@@ -20,12 +20,14 @@ public class SearchAccess {
             Statement statement = connection.createStatement();
             String SQLQuery = "SELECT * FROM articles WHERE UPPER(header) LIKE UPPER('%" + query + "%');";
             ResultSet resultSet = statement.executeQuery(SQLQuery);
+            LogAccess.logInfo("Выполнен поиск статей по запросу " + query);
             while (resultSet.next()) {
                 Article newArticle = ArticleAccess.resultSetToArticle(resultSet);
                 result.add(newArticle);
             }
             connection.close();
         } catch (SQLException | IOException e) {
+            LogAccess.logError("Ошибка поиска статей по запросу" + query);
             throw new RuntimeException(e);
         }
         return result;
