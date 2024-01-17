@@ -1,0 +1,134 @@
+body {
+    font-family: "Aclonica";
+    font-size: 32px;
+    color: #701F4D;
+}
+
+body .header-wrapper{
+    width: 100%;
+    height: 100px;
+    background-color: #E5419F;
+    left: 0%;
+    top: 0%;
+    display: flex;
+    position: fixed;
+}
+
+.nav {
+    flex-direction: row;
+    font-size: 24px;
+    margin: 0;
+}
+
+ul {
+    display: flex;
+}
+
+li {
+    padding-left: 20pt;
+    padding-right: 20pt;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+a li{
+    height: 50%;
+    margin-top: 35px;
+}
+
+form {
+    float: right;
+    margin-top: 35px;
+    margin-left: 10px;
+}
+
+.img_main{
+    display: flex;
+    margin-right: 10pt;
+}
+
+.nav a{
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+}
+
+.nav_hide a{
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+}
+
+.selected_nav a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+}
+
+.selected_nav {
+    background-color: rgba(255, 255, 255, 0.16);
+}
+
+a img {
+    height: 50%;
+}
+
+.img_main img {
+    height: 100%;
+}
+
+h1{
+    font-family: "Aclonica";
+    font-size: 64px;
+    color: #C23685;
+    padding-top: 100px;
+    text-align: center;
+}
+
+.definition{
+    display: flex;
+}
+
+.user{
+    position: absolute;
+    right: 0;
+    margin-top: 15px;
+}
+
+.search_field {
+    font-family: "Aclonica";
+    border-radius: 5px;
+    display: flex;
+    background-image: url(../img/search.svg);
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: auto 90%;
+    padding-left: 20pt;
+    float: right;
+    font-size: 18px;
+}
+
+input {
+    border: none;
+    outline: none;
+}
+
+.nav a:hover {
+    background-color: #992B69;
+}
+
+.menu_button {
+    display: none;
+}
+
+.deletion_form {
+    display: inline-block;
+}
+.deletion_form_hidden {
+    display: none;
+}
