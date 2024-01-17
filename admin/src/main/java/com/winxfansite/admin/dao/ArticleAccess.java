@@ -16,19 +16,7 @@ public class ArticleAccess {
         Article result = new Article();
         result.setId(resultSet.getInt("id"));
         result.setHeader(resultSet.getString("header"));
-        result.setShortDescr(resultSet.getString("shortdescr"));
-        result.setLongDescr(resultSet.getString("longdescr"));
-        result.setType(resultSet.getString("type"));
-        result.setAuthor(resultSet.getString("author"));
-        result.setURL("/articles/" + result.getHeader());
-        switch (result.getType()) {
-            case "fairies":
-                result.setViewType("Феи");
-                break;
-            case "schools":
-                result.setViewType("Школы");
-                break;
-        }
+        result.setVisits(resultSet.getInt("visits"));
         return result;
     }
     public List<Article> getAllArticles() {
@@ -36,7 +24,7 @@ public class ArticleAccess {
         try {
             var connection = DBConnection.getConnection();
             Statement statement = connection.createStatement();
-            String query = "SELECT header, visits FROM articles;";
+            String query = "SELECT id, header, visits FROM articles ORDER BY id;";
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 Article newArticle = resultSetToArticle(resultSet);

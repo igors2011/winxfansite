@@ -11,7 +11,7 @@ body .header-wrapper{
     left: 0%;
     top: 0%;
     display: flex;
-    position: fixed;
+    position: sticky;
 }
 
 .nav {
