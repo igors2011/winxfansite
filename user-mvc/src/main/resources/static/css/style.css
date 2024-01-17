@@ -40,7 +40,6 @@ a li{
 }
 
 form {
-    float: right;
     margin-top: 35px;
     margin-left: 10px;
 }
@@ -129,7 +128,23 @@ input {
 
 .deletion_form {
     display: inline-block;
+    background-color: rgba(160, 146, 154, 0.2);
+    text-align: center;
+    position: fixed;
+    top: 30%;
+    left: 30%;
+    font-weight: bold;
+    width: 50%;
+    height: 35%;
+    border-radius: 15%;
 }
+
 .deletion_form_hidden {
     display: none;
 }
+
+.but{
+    font-size: inherit;
+    background-color: none;
+}
+
