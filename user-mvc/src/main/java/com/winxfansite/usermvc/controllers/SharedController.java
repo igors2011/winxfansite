@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.ArrayList;
 
 @Controller
-@RequestMapping()
+@RequestMapping("/shared")
 public class SharedController {
     private final ArticleAccess articleAccess;
     @Autowired

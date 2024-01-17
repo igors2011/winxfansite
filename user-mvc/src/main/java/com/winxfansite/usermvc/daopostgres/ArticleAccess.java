@@ -18,7 +18,7 @@ public class ArticleAccess {
         result.setLongDescr(resultSet.getString("longdescr"));
         result.setType(resultSet.getString("type"));
         result.setAuthor(resultSet.getString("author"));
-        result.setURL("/articles/" + result.getHeader());
+        result.setURL("/shared/articles/" + result.getHeader());
         switch (result.getType()) {
             case "fairies":
                 result.setViewType("Феи");
@@ -79,10 +79,10 @@ public class ArticleAccess {
             }
             preparedArticle.executeUpdate();
             if (!action) {
-                LogAccess.logInfo("Статья с названием " + article.getHeader() +  "добавлена");
+                LogAccess.logInfo("Статья с названием " + article.getHeader() +  " добавлена");
             }
             else {
-                LogAccess.logInfo("Статья с названием " + article.getHeader() +  "отредактирована");
+                LogAccess.logInfo("Статья с названием " + article.getHeader() +  " отредактирована");
             }
             preparedArticle.close();
             connection.close();
