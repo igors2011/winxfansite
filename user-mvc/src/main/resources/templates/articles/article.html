@@ -9,6 +9,7 @@
             <div th:insert="~{shared/header :: header}"></div>
         </div>
         <h1 th:text="${article.getHeader()}"></h1>
+        <img th:src="'data:image/jpeg;base64,' + ${image}">
         <div>
             <h2 th:text="'Категория: ' + ${article.getViewType()}"></h2>
         </div>

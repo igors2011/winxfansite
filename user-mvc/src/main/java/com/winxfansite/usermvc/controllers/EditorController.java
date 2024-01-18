@@ -3,9 +3,16 @@ package com.winxfansite.usermvc.controllers;
 import com.winxfansite.usermvc.daopostgres.ArticleAccess;
 import models.Article;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/editor")
@@ -22,7 +29,7 @@ public class EditorController {
     }
     @PostMapping("/add")
     public String addArticle(@ModelAttribute("article") Article article) {
-        articleAccess.insertOrUpdateArticle(article, false);
+        articleAccess.insertOrUpdateArticle(article, new byte[]{}, false);
         return "articles/newarticlesuccess";
     }
     @GetMapping("/edit/{articleName}")
@@ -33,8 +40,13 @@ public class EditorController {
         return "articles/editarticle";
     }
     @PostMapping("/edit")
-    public String editArticle(@ModelAttribute("article") Article article) {
-        articleAccess.insertOrUpdateArticle(article, true);
+    public String editArticle(@ModelAttribute("article") Article article, @RequestParam("image") MultipartFile file) {
+        try {
+            byte[] imageData = file.getBytes();
+            articleAccess.insertOrUpdateArticle(article, imageData, true);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         return "articles/editarticlesuccess";
     }
     @PostMapping("/delete")

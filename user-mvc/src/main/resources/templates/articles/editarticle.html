@@ -6,7 +6,7 @@
     </head>
     <body>
     <div th:insert="~{shared/header :: header}"></div>
-    <form action="#" th:action="@{/editor/edit}" th:object="${article}" method="post">
+    <form action="#" th:action="@{/editor/edit}" th:object="${article}" method="post" enctype="multipart/form-data">
         <p>Название: <input type="text" th:field="*{header}" /></p>
         <p>Краткое описание: <input type="text" th:field="*{shortDescr}" /></p>
         <p>Содержание: <input type="text" th:field="*{longDescr}" /></p>
@@ -18,6 +18,7 @@
             </select>
         </p>
         <p>Автор: <input type="text" th:field="*{author}" /></p>
+        <p>Изображение: <input type="file" name="image" /></p>
         <input type="text" th:hidden="true" th:field="*{id}" />
         <p><input type="submit" value="Сохранить" /></p>
     </form>

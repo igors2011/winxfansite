@@ -25,7 +25,22 @@ public class ArticleAccess {
             throw new RuntimeException(e);
         }
     }
-
+    public byte[] getImageByArticleId(int articleId) {
+        try {
+            byte[] result = null;
+            var connection = DBConnection.getConnection();
+            Statement statement = connection.createStatement();
+            String query = "SELECT image FROM articles WHERE id = '" + articleId + "';";
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                result = resultSet.getBytes("image");
+            }
+            connection.close();
+            return result;
+        } catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public static void addComments(Article article, ResultSet commentsResultSet) throws SQLException {
         List<Comment> comments = new ArrayList<>();
         while (commentsResultSet.next()) {
@@ -55,15 +70,16 @@ public class ArticleAccess {
         }
         return result;
     }
-    private static PreparedStatement prepareArticleForInsert(Connection connection, Article article) {
+    private static PreparedStatement prepareArticleForInsert(Connection connection, Article article, byte[] image) {
         try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO articles (header, shortdescr, longdescr, type, author, visits) VALUES (?, ?, ?, ?, ?, ?)");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO articles (header, shortdescr, longdescr, type, author, visits, image) VALUES (?, ?, ?, ?, ?, ?, ?)");
             statement.setString(1, article.getHeader());
             statement.setString(2, article.getShortDescr());
             statement.setString(3, article.getLongDescr());
             statement.setString(4, article.getType());
             statement.setString(5, article.getAuthor());
             statement.setInt(6, 0);
+            statement.setBytes(7, image);
             return statement;
         }
         catch (Exception e)
@@ -71,14 +87,15 @@ public class ArticleAccess {
             throw  new RuntimeException(e);
         }
     }
-    private static PreparedStatement prepareArticleForUpdate(Connection connection, Article article) {
+    private static PreparedStatement prepareArticleForUpdate(Connection connection, Article article, byte[] image) {
         try {
-            PreparedStatement statement = connection.prepareStatement("UPDATE articles SET (header, shortdescr, longdescr, type, author) = (?, ?, ?, ?, ?) WHERE id = " + article.getId() + ";");
+            PreparedStatement statement = connection.prepareStatement("UPDATE articles SET (header, shortdescr, longdescr, type, author, image) = (?, ?, ?, ?, ?, ?) WHERE id = " + article.getId() + ";");
             statement.setString(1, article.getHeader());
             statement.setString(2, article.getShortDescr());
             statement.setString(3, article.getLongDescr());
             statement.setString(4, article.getType());
             statement.setString(5, article.getAuthor());
+            statement.setBytes(6, image);
             return statement;
         }
         catch (Exception e)
@@ -93,15 +110,15 @@ public class ArticleAccess {
             throw new RuntimeException(e);
         }
     }
-    public void insertOrUpdateArticle(Article article, boolean action) {
+    public void insertOrUpdateArticle(Article article, byte[] image, boolean action) {
         try {
             Connection connection = DBConnection.getConnection();
             PreparedStatement preparedArticle;
             if (!action) {
-                preparedArticle = prepareArticleForInsert(connection, article);
+                preparedArticle = prepareArticleForInsert(connection, article, image);
             }
             else {
-                preparedArticle = prepareArticleForUpdate(connection, article);
+                preparedArticle = prepareArticleForUpdate(connection, article, image);
             }
             preparedArticle.executeUpdate();
             if (!action) {
