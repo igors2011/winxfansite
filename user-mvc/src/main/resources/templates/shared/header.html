@@ -7,7 +7,8 @@
             <a th:href="@{/}" id="specialists"><li><img th:src="@{/img/2.svg}"><div class="header_element">СПЕЦИАЛИСТЫ</div></li></a>
             <a th:href="@{/}" id="villains"><li><img th:src="@{/img/3.svg}"><div class="header_element">ЗЛОДЕИ</div></li></a>
             <a th:href="@{/}" id="schools"><li><img th:src="@{/img/5.svg}"><div class="header_element">ТЕСТЫ</div></li></a>
-            <a th:href="@{/account/login}" id="others"><li><img th:src="@{/img/4.svg}"><div class="header_element">ВХОД</div></li></a>
+            <a th:href="@{/account/login}" id="login"><li><img th:src="@{/img/4.svg}"><div class="header_element">ВХОД</div></li></a>
+            <a th:href="@{/account/logout}" id="logout"><li><img th:src="@{/img/4.svg}"><div class="header_element">ВЫХОД</div></li></a>
         </ul>
         <form id="search_form" name="search" method="get" th:attr="action=@{/search}">
             <input class="search_field" type="text" name="query" placeholder="ПОИСК"/>

@@ -1,5 +1,7 @@
 package models;
 
+import java.util.List;
+
 public class Article
 {
     private int id;
@@ -11,6 +13,15 @@ public class Article
     private String URL;
     private String viewType;
     private int visits;
+    private List<Comment> comments;
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 
     public int getVisits() {
         return visits;

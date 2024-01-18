@@ -29,4 +29,8 @@ public class AccountController {
         userAccess.insertUser(newUser);
         return "redirect:/account/login";
     }
+    @GetMapping("/logout")
+    public String logout() {
+        return "redirect:/account/login";
+    }
 }

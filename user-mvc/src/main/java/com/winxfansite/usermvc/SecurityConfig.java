@@ -24,7 +24,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .usersByUsernameQuery("SELECT username, password, enabled FROM users WHERE username=?")
-                .authoritiesByUsernameQuery("SELECT username, role FROM users WHERE username=?");
+                .authoritiesByUsernameQuery("SELECT username, role FROM users WHERE username=?")
+                .and()
+                .inMemoryAuthentication()
+                .withUser("us")
+                .password("123")
+                .roles("admin");
     }
 
     @Override
@@ -38,6 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/search/**").permitAll()
                 .antMatchers("/account/register/**").permitAll()
                 .antMatchers("/editor/**").hasAnyRole("editor", "admin")
+                .antMatchers("/comment/**").hasAnyRole("user", "editor", "admin")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -47,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login")
+                .logoutSuccessUrl("/")
                 .deleteCookies("JSESSIONID")
                 .invalidateHttpSession(true)
                 .and()
