@@ -1,10 +1,11 @@
 package com.winxfansite.usermvc.daopostgres;
 
 import models.User;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.sql.*;
-
+@Component
 public class UserAccess {
     public static PreparedStatement prepareUser(Connection connection, User user) {
         try {
@@ -34,34 +35,32 @@ public class UserAccess {
         }
         return result;
     }
-    public User getUser(String login, String password) {
+    private static PreparedStatement prepareUserForInsert(Connection connection, User user) {
         try {
-            User result = null;
-            var connection = DBConnection.getConnection();
-            Statement statement = connection.createStatement();
-            String SQLQuery = "SELECT * FROM users WHERE login = " + login + " AND password = " + password + ";";
-            ResultSet resultSet = statement.executeQuery(SQLQuery);
-            while (resultSet.next()) {
-                result = resultSetToUser(resultSet);
-            }
-            connection.close();
-            return result;
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (username, password, role, enabled) VALUES (?, ?, ?, ?)");
+            statement.setString(1, user.getUsername());
+            statement.setString(2, user.getPassword());
+            statement.setString(3, "ROLE_user");
+            statement.setBoolean(4, true);
+            return statement;
         }
-        catch (SQLException | IOException e)
+        catch (Exception e)
         {
-            throw new RuntimeException(e);
+            throw  new RuntimeException(e);
         }
     }
-    public void setUser(User user) {
+    public void insertUser(User user) {
         try {
-            var connection = DBConnection.getConnection();
-            PreparedStatement preparedUser = prepareUser(connection, user);
+            Connection connection = DBConnection.getConnection();
+            PreparedStatement preparedUser = prepareUserForInsert(connection, user);
             preparedUser.executeUpdate();
+            LogAccess.logInfo("Добавлен пользователь с именем " + user.getUsername());
             preparedUser.close();
             connection.close();
         }
         catch (SQLException | IOException e)
         {
+            LogAccess.logError("Ошибка при добавлении пользователя с именем " + user.getUsername());
             throw new RuntimeException(e);
         }
     }
