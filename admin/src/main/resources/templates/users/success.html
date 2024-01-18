@@ -1,13 +1,22 @@
-<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Login</title>
     <div th:insert="~{shared/meta :: meta}"></div>
+    <title>Добро пожаловать на фан-сайт Винкс!</title>
 </head>
+
 <body>
-<div th:insert="~{shared/header :: header}"></div>
-<h1>Авторизация успешна!</h1>
+<div class="head">
+    <div th:insert="~{shared/header :: header}"></div>
+</div>
+<h1>Добро пожаловать на фан-сайт Винкс!</h1>
+<div class="content">
+    <a th:href="@{/}"><img class="img" th:src="@{/img/category_fairy.jpg}"></a>
+    <a th:href="@{/}"><img class="img" th:src="@{/img/category_spec.jpg}"></a>
+    <a th:href="@{/}"><img class="img" th:src="@{/img/category_bad.jpg}"></a>
+    <a th:href="@{/}"><img class="img" th:src="@{/img/category_school.jpg}"></a>
+    <p><a class="all" th:href="@{/shared/articles}">Показать все статьи</a></p>
+</div>
 </body>
 </html>
