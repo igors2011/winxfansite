@@ -19,7 +19,7 @@ public class LogAccess {
         try {
             var connection = DBConnection.getConnection();
             Statement statement = connection.createStatement();
-            String query = "SELECT * FROM logs ORDER BY date;";
+            String query = "SELECT * FROM logs ORDER BY date DESC;";
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 Log newLog = resultSetToLog(resultSet);
@@ -39,11 +39,11 @@ public class LogAccess {
             String query;
             if (type.equals("all"))
             {
-                query = "SELECT * FROM logs ORDER BY date;";
+                query = "SELECT * FROM logs ORDER BY date DESC;";
             }
             else
             {
-                query = "SELECT * FROM logs WHERE type = '" + type + "' ORDER BY date;";
+                query = "SELECT * FROM logs WHERE type = '" + type + "' ORDER BY date DESC;";
             }
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {

@@ -10,7 +10,13 @@
         <p>Название: <input type="text" th:field="*{header}" /></p>
         <p>Краткое описание: <input type="text" th:field="*{shortDescr}" /></p>
         <p>Содержание: <input type="text" th:field="*{longDescr}" /></p>
-        <p>Тип: <input type="text" th:field="*{type}" /></p>
+        <p>
+            Категория:
+            <select th:field="*{type}">
+                <option th:text="Феи" th:value="fairies"></option>
+                <option th:text="Школы" th:value="schools"></option>
+            </select>
+        </p>
         <p>Автор: <input type="text" th:field="*{author}" /></p>
         <p><input type="submit" value="Добавить" /></p>
     </form>
