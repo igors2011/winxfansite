@@ -7,6 +7,7 @@ body {
 .head{
     position: sticky;
     top: 0;
+    z-index: 3;
 }
 
 body .header-wrapper{
@@ -147,4 +148,16 @@ input {
     font-size: inherit;
     background-color: none;
 }
+
+.content {
+  padding: 10px;
+  text-align: center;
+}
+
+.all {
+    font-family: "Aclonica";
+    color: #99587D;
+    text-align: center;
+}
+
 
