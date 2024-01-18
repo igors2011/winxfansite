@@ -1,4 +1,4 @@
-package com.winxfansite.usermvc;
+package com.winxfansite.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,6 +16,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Autowired
     private DataSource dataSource;
 
@@ -31,26 +32,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/css/**").permitAll()
-                .antMatchers("/js/**").permitAll()
-                .antMatchers("/img/**").permitAll()
-                .antMatchers("/shared/**").permitAll()
-                .antMatchers("/search/**").permitAll()
-                .antMatchers("/account/register/**").permitAll()
-                .antMatchers("/editor/**").hasAnyRole("editor", "admin")
-                .anyRequest().authenticated()
-                .and()
+                    .antMatchers("/css/**").permitAll()
+                    .antMatchers("/js/**").permitAll()
+                    .antMatchers("/img/**").permitAll()
+                    .antMatchers("/temp/**").permitAll()
+                    .antMatchers("/admin/**").hasRole("admin")
+                    .anyRequest().authenticated()
+                    .and()
                 .formLogin()
-                .loginPage("/account/login")
-                .defaultSuccessUrl("/")
-                .permitAll()
-                .and()
+                    .loginPage("/login")
+                    .defaultSuccessUrl("/admin")
+                    .permitAll()
+                    .and()
                 .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login")
-                .deleteCookies("JSESSIONID")
-                .invalidateHttpSession(true)
-                .and()
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                    .logoutSuccessUrl("/login")
+                    .deleteCookies("JSESSIONID")
+                    .invalidateHttpSession(true)
+                    .and()
                 .httpBasic();
     }
     @Bean

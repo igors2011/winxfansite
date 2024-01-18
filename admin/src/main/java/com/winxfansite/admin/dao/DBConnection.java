@@ -1,4 +1,4 @@
-package com.winxfansite.usermvc.daopostgres;
+package com.winxfansite.admin.dao;
 
 
 import org.springframework.stereotype.Component;
@@ -16,7 +16,7 @@ public class DBConnection
 {
     public static Connection getConnection() throws SQLException, IOException {
         Properties props = new Properties();
-        try(InputStream in = Files.newInputStream(Paths.get("user-mvc/src/main/resources/settings/dbconnection.properties"))){
+        try(InputStream in = Files.newInputStream(Paths.get("admin/src/main/resources/settings/dbconnection.properties"))){
             props.load(in);
         }
         String url = props.getProperty("url");

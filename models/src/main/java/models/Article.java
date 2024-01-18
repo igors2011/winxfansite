@@ -10,6 +10,16 @@ public class Article
     private String author;
     private String URL;
     private String viewType;
+    private int visits;
+
+    public int getVisits() {
+        return visits;
+    }
+
+    public void setVisits(int visits) {
+        this.visits = visits;
+    }
+
     public String getViewType() {
         return viewType;
     }

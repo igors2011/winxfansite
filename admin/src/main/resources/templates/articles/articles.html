@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:insert="~{shared/meta :: meta}"></div>
+    <title>Статьи</title>
+</head>
+<body>
+<div th:insert="~{shared/header :: header}"></div>
+<table>
+    <tr><th>Id</th><th>Название</th><th>Количество посещений</th></tr>
+    <tr th:each="article : ${allArticles}"><td th:text="@{${article.getId()} + ' '}"></td><td th:text="@{${article.getHeader()} + ' '}"></td><td th:text="@{${article.getVisits()} + ' '}"></td></tr>
+</table>
+</body>
+</html>
