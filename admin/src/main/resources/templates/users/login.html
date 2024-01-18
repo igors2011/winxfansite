@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Вход</title>
-    <div th:insert="~{shared/meta :: meta}"></div>
-</head>
-<body>
-<div th:insert="~{shared/header :: header}"></div>
-<h2>Вход</h2>
-<form th:action="@{/login}" method="post">
-    <input type="text" name="username" placeholder="Имя пользователя" required><br>
-    <input type="password" name="password" placeholder="Пароль" required><br>
-    <button type="submit">Войти</button>
-</form>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Вход</title>
+        <div th:insert="~{shared/meta :: meta}"></div>
+    </head>
+    <body>
+        <div class="head">
+            <div th:insert="~{shared/header :: header}"></div>
+        </div>
+        <div class="login_form">
+            <h2>Вход</h2>
+            <form th:action="@{/login}" method="post">
+                <input type="text" name="username" placeholder="Имя пользователя" required><br>
+                <input type="password" name="password" placeholder="Пароль" required><br>
+                <button class="login_button" type="submit">Войти</button>
+            </form>
+        </div>
+    </body>
 </html>
