@@ -44,8 +44,10 @@ public class SharedController {
     public String article(@PathVariable("articleName") String articleName, Model model) {
         var article = articleAccess.getArticleByHeader(articleName);
         byte[] imageData = articleAccess.getImageByArticleId(article.getId());
-        String base64Image = Base64.getEncoder().encodeToString(imageData);
-        model.addAttribute("image", base64Image);
+        if (imageData != null) {
+            String base64Image = Base64.getEncoder().encodeToString(imageData);
+            model.addAttribute("image", base64Image);
+        }
         articleAccess.increaseVisits(article);
         model.addAttribute("article", article);
         return "articles/article";
