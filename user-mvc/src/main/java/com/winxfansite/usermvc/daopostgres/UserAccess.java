@@ -1,5 +1,6 @@
 package com.winxfansite.usermvc.daopostgres;
 
+import models.Article;
 import models.User;
 import org.springframework.stereotype.Component;
 
@@ -61,6 +62,21 @@ public class UserAccess {
         catch (SQLException | IOException e)
         {
             LogAccess.logError("Ошибка при добавлении пользователя с именем " + user.getUsername());
+            throw new RuntimeException(e);
+        }
+    }
+    public int getUserIdByName(String username) {
+        try {
+            var connection = DBConnection.getConnection();
+            Statement statement = connection.createStatement();
+            String query = "SELECT id FROM users WHERE username = '" + username + "';";
+            ResultSet resultSet = statement.executeQuery(query);
+            if (resultSet.next()) {
+                connection.close();
+                return resultSet.getInt("id");
+            }
+            return 0;
+        } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
     }
