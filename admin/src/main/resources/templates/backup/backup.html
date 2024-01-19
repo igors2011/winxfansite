@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:insert="~{shared/meta :: meta}"></div>
+    <title>Бэкап</title>
+</head>
+<body>
+<div class="head">
+    <div th:insert="~{shared/header :: header}"></div>
+</div>
+<form th:action="@{/backup/articles}" method="post">
+    <button type="submit">Статьи</button>
+</form>
+<form th:action="@{/backup/users}" method="post">
+    <button type="submit">Пользователи</button>
+</form>
+<form th:action="@{/backup/logs}" method="post">
+    <button type="submit">Логи</button>
+</form>
+<form th:action="@{/backup/comments}" method="post">
+    <button type="submit">Комментарии</button>
+</form>
+</body>
+</html>
