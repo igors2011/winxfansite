@@ -178,4 +178,33 @@ input {
     height: 5%;
 }
 
+.article_img{
+    width: 100%;
+    height: 100%;
+}
 
+.block{
+  display: grid;
+  grid-template-columns: 30% auto;
+  gap: 1px;
+}
+
+.comment_wrapper{
+    background-color: rgba(128, 129, 132, 0.3);
+    width: 70%;
+    border-radius: 10%;
+}
+
+.send_comment{
+    color: rgba(229, 65, 159, 0.8);
+}
+
+.send_comment input{
+    background-color: rgba(128, 129, 132, 0.3);
+    border-radius: 10%;
+}
+
+.comment_block{
+    border-top: 2px dashed #E5419F;
+    border-bottom: 2px dashed #E5419F;
+}
