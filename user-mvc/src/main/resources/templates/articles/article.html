@@ -33,13 +33,15 @@
             </h1>
         </div>
         </div>
-        <div class="send_comment">
-            <form action="#" th:action="@{/comment}" method="post">
-                <input type="hidden" name="articleId" th:value="${article.getId()}" />
-                <input type="hidden" name="articleName" th:value="${article.getHeader()}" />
-                <input type="text" name="message" />
-                <button type="submit">Отправить комментарий</button>
-            </form>
+        <div sec:authorize="hasRole('ROLE_admin') or hasRole('ROLE_editor') or hasRole('ROLE_user')">
+            <div class="send_comment">
+                <form action="#" th:action="@{/comment}" method="post">
+                    <input type="hidden" name="articleId" th:value="${article.getId()}" />
+                    <input type="hidden" name="articleName" th:value="${article.getHeader()}" />
+                    <input type="text" name="message" />
+                    <button type="submit">Отправить комментарий</button>
+                </form>
+            </div>
         </div>
     </body>
 </html>

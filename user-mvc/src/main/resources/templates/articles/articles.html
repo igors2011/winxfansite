@@ -9,7 +9,7 @@
             <div th:insert="~{shared/header :: header}"></div>
         </div>
 
-        <div sec:authorize="hasRole('ROLE_admin') or hasRole('ROLE_editor')">"
+        <div sec:authorize="hasRole('ROLE_admin') or hasRole('ROLE_editor')">
             <a th:href="@{/editor/add}">Добавить статью</a>
         </div>
         <div th:each="article : ${allArticles}">
