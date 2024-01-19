@@ -10,8 +10,9 @@
 </div>
 <div class="table_container">
     <table>
-        <tr><th>Id</th><th>Имя пользователя</th><th>Роль</th><th>Активность</th></tr>
-        <tr th:each="user : ${allUsers}"><td th:text="@{${user.getId()}}"></td><td th:text="@{${user.getUsername()}}"></td><td th:text="@{${user.getRole()}}"></td><td th:text="@{${user.isEnabled()}}"></td></tr>
+        <tr><th>Id</th><th>Имя пользователя</th><th>Роль</th><th>Активность</th><th>Редактирование</th></tr>
+        <tr th:each="user : ${allUsers}"><td th:text="@{${user.getId()}}"></td><td th:text="@{${user.getUsername()}}"></td><td th:text="@{${user.getRole()}}"></td><td th:text="@{${user.isEnabled()}}"></td><td><a class="all" th:href="@{'/users/edit/' + ${user.getId()}}">Редактировать</a></td></tr>
+        <tr><td><a th:href="@{/users/create}">Добавить пользователя</a></td></tr>
     </table>
 </div>
 </body>
