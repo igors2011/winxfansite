@@ -1,6 +1,5 @@
 package com.winxfansite.admin.dao;
 
-import models.Article;
 import models.User;
 import org.springframework.stereotype.Component;
 

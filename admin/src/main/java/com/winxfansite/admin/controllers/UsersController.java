@@ -1,7 +1,5 @@
 package com.winxfansite.admin.controllers;
 
-import com.winxfansite.admin.dao.ArticleAccess;
-import com.winxfansite.admin.dao.LogAccess;
 import com.winxfansite.admin.dao.UserAccess;
 import models.User;
 import org.springframework.beans.factory.annotation.Autowired;

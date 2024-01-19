@@ -1,6 +1,5 @@
 package com.winxfansite.usermvc.daopostgres;
 
-import models.Article;
 import models.User;
 import org.springframework.stereotype.Component;
 
