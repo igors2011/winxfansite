@@ -1,4 +1,4 @@
-<div th:fragment="header">
+<div th:fragment="header" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
     <!--шапка-->
     <div class="header-wrapper">
         <a class="img_main" th:href="@{/}"><img th:src="@{/img/logo.svg}"></a>
@@ -6,12 +6,13 @@
             <a th:href="@{/admin/articles}" id="fairies"><li><img th:src="@{/img/article.svg}"><div class="header_element">СТАТЬИ</div></li></a>
             <a th:href="@{/admin/logs}" id="specialists"><li><img th:src="@{/img/log.svg}"><div class="header_element">ЛОГИ</div></li></a>
             <a th:href="@{/admin/users}" id="schools"><li><img th:src="@{/img/user.svg}"><div class="header_element">ПОЛЬЗОВАТЕЛИ</div></li></a>
-            <a th:href="@{/logout}" id="villains"><li><img th:src="@{/img/exit.svg}"><div class="header_element">ВЫХОД</div></li></a>
             <a th:href="@{/backup}"><li><div class="header_element">БЭКАП</div></li></a>
             <a th:href="@{/}"><li><div class="header_element">РАССЫЛКА</div></li></a>
+            <li><div class="header_element" sec:authentication="name"></div></li>
+            <a th:href="@{/logout}" id="villains"><li><img th:src="@{/img/exit.svg}"><div class="header_element">ВЫХОД</div></li></a>
         </ul>
         <button class="menu_button" id="open_menu">O</button>
-        <div class="user"><img th:src="@{/img/people.png}"></div>
+<!--        <div class="user"><img th:src="@{/img/people.png}"></div>-->
     </div>
     <script th:src="@{/js/header_script.js}"></script>
     <!--шапка-->

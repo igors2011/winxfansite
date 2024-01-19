@@ -1,20 +1,33 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <div th:fragment="header">
     <!--шапка-->
     <div class="header-wrapper">
         <a class="img_main" th:href="@{/shared}"><img th:src="@{/img/logo.svg}"></a>
         <ul id="menu_list" class="nav">
-            <a th:href="@{/}" id="fairies"><li><img th:src="@{/img/1.svg}"><div class="header_element">ФЕИ</div></li></a>
-            <a th:href="@{/}" id="specialists"><li><img th:src="@{/img/2.svg}"><div class="header_element">СПЕЦИАЛИСТЫ</div></li></a>
-            <a th:href="@{/}" id="villains"><li><img th:src="@{/img/3.svg}"><div class="header_element">ЗЛОДЕИ</div></li></a>
-            <a th:href="@{/}" id="schools"><li><img th:src="@{/img/5.svg}"><div class="header_element">ТЕСТЫ</div></li></a>
-            <a th:href="@{/account/login}" id="others"><li><img th:src="@{/img/input.svg}"><div class="header_element">ВХОД</div></li></a>
+            <a th:href="@{/shared/fairies}" id="fairies"><li><img th:src="@{/img/1.svg}"><div class="header_element">ФЕИ</div></li></a>
+            <a th:href="@{/shared/specialists}" id="specialists"><li><img th:src="@{/img/2.svg}"><div class="header_element">СПЕЦИАЛИСТЫ</div></li></a>
+            <a th:href="@{/shared/villains}" id="villains"><li><img th:src="@{/img/3.svg}"><div class="header_element">ЗЛОДЕИ</div></li></a>
+            <a th:href="@{/shared/schools}" id="schools"><li><img th:src="@{/img/5.svg}"><div class="header_element">ШКОЛЫ</div></li></a>
+            <a th:href="@{/account/login}" id="login"><li><img th:src="@{/img/input.svg}"><div class="header_element">ВХОД</div></li></a>
+            <a th:href="@{/account/register}" id="register"><li><img th:src="@{/img/input.svg}"><div class="header_element">РЕГИСТРАЦИЯ</div></li></a>
+            <li><div class="header_element" sec:authentication="name"></div></li>
+            <a th:href="@{/logout}" id="logout"><li><img th:src="@{/img/input.svg}"><div class="header_element">Выход</div></li></a>
         </ul>
         <form id="search_form" name="search" method="get" th:attr="action=@{/search}">
             <input class="search_field" type="text" name="query" placeholder="ПОИСК"/>
         </form>
         <button class="menu_button" id="open_menu">O</button>
-        <div class="user"><img th:src="@{/img/people.png}"></div>
+<!--        <div class="user"><img th:src="@{/img/people.png}"></div>-->
     </div>
+<!--    <div sec:authorize="hasRole('ROLE_admin')">-->
+<!--        <div>hello admin</div>-->
+<!--    </div>-->
+<!--    <div sec:authorize="hasRole('ROLE_editor')">-->
+<!--        <div>hello editor</div>-->
+<!--    </div>-->
+<!--    <div sec:authorize="hasRole('ROLE_user')">-->
+<!--        <div>hello user</div>-->
+<!--    </div>-->
     <script th:src="@{/js/header_script.js}"></script>
     <!--шапка-->
 </div>

@@ -37,7 +37,14 @@ public class SharedController {
     public String category(@PathVariable("category") String category, Model model) {
         var articlesByCategory = articleAccess.getArticlesByType(category);
         model.addAttribute("articlesByCategory", articlesByCategory);
-        model.addAttribute("category", category);
+        String viewCategory = switch (category) {
+            case "fairies" -> "Феи";
+            case "specialists" -> "Специалисты";
+            case "villains" -> "Злодеи";
+            case "schools" -> "Школы";
+            default -> "";
+        };
+        model.addAttribute("category", viewCategory);
         return "articles/category";
     }
     @GetMapping("articles/{articleName}")

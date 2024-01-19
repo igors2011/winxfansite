@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
     <head>
         <div th:insert="~{shared/meta :: meta}"></div>
         <title>Статьи</title>
@@ -8,7 +8,10 @@
         <div class="head">
             <div th:insert="~{shared/header :: header}"></div>
         </div>
-        <a th:href="@{/editor/add}">Добавить статью</a>
+
+        <div sec:authorize="hasRole('ROLE_admin') or hasRole('ROLE_editor')">"
+            <a th:href="@{/editor/add}">Добавить статью</a>
+        </div>
         <div th:each="article : ${allArticles}">
             <h1>
                 <a th:href="@{{URL}(URL=${article.getURL()})}" th:text="${article.getHeader()}"></a>

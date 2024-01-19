@@ -64,6 +64,12 @@ public class ArticleAccess {
             case "fairies":
                 result.setViewType("Феи");
                 break;
+            case "specialists":
+                result.setViewType("Специалисты");
+                break;
+            case "villains":
+                result.setViewType("Злодеи");
+                break;
             case "schools":
                 result.setViewType("Школы");
                 break;
