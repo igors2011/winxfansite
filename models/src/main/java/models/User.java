@@ -4,6 +4,8 @@ public class User {
     private int id;
     private String username;
     private String password;
+    private String email;
+
     private String role;
     private boolean enabled;
 
@@ -45,5 +47,12 @@ public class User {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

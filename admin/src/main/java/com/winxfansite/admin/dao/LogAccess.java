@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 @Component
@@ -31,7 +32,7 @@ public class LogAccess {
         }
         return result;
     }
-    public List<Log> getLogsByType(String type) {
+    public List<Log> getLogsByType(String type, Timestamp dateFrom, Timestamp dateTo) {
         List<Log> result = new ArrayList<>();
         try {
             var connection = DBConnection.getConnection();
@@ -39,11 +40,11 @@ public class LogAccess {
             String query;
             if (type.equals("all"))
             {
-                query = "SELECT * FROM logs ORDER BY date DESC;";
+                query = "SELECT * FROM logs WHERE date BETWEEN '" + dateFrom + "' AND '" + dateTo + "' ORDER BY date DESC;";
             }
             else
             {
-                query = "SELECT * FROM logs WHERE type = '" + type + "' ORDER BY date DESC;";
+                query = "SELECT * FROM logs WHERE type = '" + type + "' AND date BETWEEN '" + dateFrom + "' AND '" + dateTo + "' ORDER BY date DESC;";
             }
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {

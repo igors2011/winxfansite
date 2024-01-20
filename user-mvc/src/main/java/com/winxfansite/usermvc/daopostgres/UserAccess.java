@@ -37,11 +37,12 @@ public class UserAccess {
     }
     private static PreparedStatement prepareUserForInsert(Connection connection, User user) {
         try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (username, password, role, enabled) VALUES (?, ?, ?, ?)");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (username, password, role, enabled, email) VALUES (?, ?, ?, ?, ?)");
             statement.setString(1, user.getUsername());
             statement.setString(2, user.getPassword());
             statement.setString(3, "ROLE_user");
             statement.setBoolean(4, true);
+            statement.setString(5, user.getEmail());
             return statement;
         }
         catch (Exception e)

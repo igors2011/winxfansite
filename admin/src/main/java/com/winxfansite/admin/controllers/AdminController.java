@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 @Controller
 @RequestMapping("/admin")
@@ -37,8 +42,13 @@ public class AdminController {
         return "logs/logs";
     }
     @GetMapping("/logs/type")
-    public String logsByType(@RequestParam("type") String type, Model model) {
-        var logsByType = logAccess.getLogsByType(type);
+    public String logsByType(@RequestParam("type") String type, Model model, @RequestParam("dateFrom") String dateFrom, @RequestParam("dateTo") String dateTo) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+        Date parsedDateFrom = dateFormat.parse(dateFrom);
+        Date parsedDateTo = dateFormat.parse(dateTo);
+        Timestamp dFrom = new Timestamp(parsedDateFrom.getTime());
+        Timestamp dTo = new Timestamp(parsedDateTo.getTime());
+        var logsByType = logAccess.getLogsByType(type, dFrom, dTo);
         model.addAttribute("type", type);
         model.addAttribute("logsByType", logsByType);
         return "logs/logsbytype";
