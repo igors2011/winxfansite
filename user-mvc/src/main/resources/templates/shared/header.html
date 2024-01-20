@@ -9,7 +9,7 @@
             <a th:href="@{/shared/villains}" id="villains"><li><img th:src="@{/img/3.svg}"><div class="header_element">ЗЛОДЕИ</div></li></a>
             <a th:href="@{/shared/schools}" id="schools"><li><img th:src="@{/img/5.svg}"><div class="header_element">ШКОЛЫ</div></li></a>
             <a sec:authorize="!isAuthenticated()" th:href="@{/account/login}" id="login"><li><img th:src="@{/img/input.svg}"><div class="header_element">ВХОД</div></li></a>
-            <a href="" id="username"><li sec:authorize="isAuthenticated()"><div class="header_element" sec:authentication="name"></div></li></a>
+            <a th:href="@{/account/edit}" id="username"><li sec:authorize="isAuthenticated()"><div class="header_element" sec:authentication="name"></div></li></a>
             <a sec:authorize="isAuthenticated()" th:href="@{/logout}" id="logout"><li><img th:src="@{/img/input.svg}"><div class="header_element">Выход</div></li></a>
         </ul>
         <form id="search_form" name="search" method="get" th:attr="action=@{/search}">
