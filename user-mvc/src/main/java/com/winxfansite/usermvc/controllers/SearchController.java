@@ -25,6 +25,12 @@ public class SearchController {
     public String searchResult(@RequestParam("query") String query, Model model)
     {
         List<Article> foundArticles = searchAccess.find(query);
+        if (foundArticles.isEmpty()) {
+            model.addAttribute("message", "К сожалению, по запросу " + query + " ничего не нашлось");
+        }
+        else {
+            model.addAttribute("message", "Список статей, найденных по запросу " + query + ":");
+        }
         model.addAttribute("searchResult", foundArticles);
         return "search/searchResult";
     }

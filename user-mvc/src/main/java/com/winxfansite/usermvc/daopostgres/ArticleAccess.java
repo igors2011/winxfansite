@@ -94,19 +94,34 @@ public class ArticleAccess {
         }
     }
     private static PreparedStatement prepareArticleForUpdate(Connection connection, Article article, byte[] image) {
-        try {
-            PreparedStatement statement = connection.prepareStatement("UPDATE articles SET (header, shortdescr, longdescr, type, author, image) = (?, ?, ?, ?, ?, ?) WHERE id = " + article.getId() + ";");
-            statement.setString(1, article.getHeader());
-            statement.setString(2, article.getShortDescr());
-            statement.setString(3, article.getLongDescr());
-            statement.setString(4, article.getType());
-            statement.setString(5, article.getAuthor());
-            statement.setBytes(6, image);
-            return statement;
+        if (image.length == 0) {
+            try {
+                PreparedStatement statement = connection.prepareStatement("UPDATE articles SET (header, shortdescr, longdescr, type, author) = (?, ?, ?, ?, ?) WHERE id = " + article.getId() + ";");
+                statement.setString(1, article.getHeader());
+                statement.setString(2, article.getShortDescr());
+                statement.setString(3, article.getLongDescr());
+                statement.setString(4, article.getType());
+                statement.setString(5, article.getAuthor());
+                return statement;
+            }
+            catch (Exception e)
+            {
+                throw  new RuntimeException(e);
+            }
         }
-        catch (Exception e)
-        {
-            throw  new RuntimeException(e);
+        else {
+            try {
+                PreparedStatement statement = connection.prepareStatement("UPDATE articles SET (header, shortdescr, longdescr, type, author, image) = (?, ?, ?, ?, ?, ?) WHERE id = " + article.getId() + ";");
+                statement.setString(1, article.getHeader());
+                statement.setString(2, article.getShortDescr());
+                statement.setString(3, article.getLongDescr());
+                statement.setString(4, article.getType());
+                statement.setString(5, article.getAuthor());
+                statement.setBytes(6, image);
+                return statement;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
     }
     private static PreparedStatement prepareArticleForDelete(Connection connection, int id) {

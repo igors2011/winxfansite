@@ -28,8 +28,13 @@ public class EditorController {
         return "articles/newarticle";
     }
     @PostMapping("/add")
-    public String addArticle(@ModelAttribute("article") Article article) {
-        articleAccess.insertOrUpdateArticle(article, new byte[]{}, false);
+    public String addArticle(@ModelAttribute("article") Article article, @RequestParam("image") MultipartFile file) {
+        try {
+            byte[] imageData = file.getBytes();
+            articleAccess.insertOrUpdateArticle(article, imageData, false);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         return "articles/newarticlesuccess";
     }
     @GetMapping("/edit/{articleName}")
