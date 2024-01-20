@@ -12,13 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/mails")
 public class MailsController {
-    private final UserAccess userAccess;
-    private final MailAccess mailAccess;
     @Autowired
-    public MailsController(UserAccess userAccess, MailAccess mailAccess) {
-        this.userAccess = userAccess;
-        this.mailAccess = mailAccess;
-    }
+    private UserAccess userAccess;
+    @Autowired
+    private MailAccess mailAccess;
     @GetMapping(value = {"", "/"})
     public String mails() {
         return "mails/mails";

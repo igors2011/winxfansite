@@ -20,15 +20,12 @@ import java.util.Date;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-    private final ArticleAccess articleAccess;
-    private final LogAccess logAccess;
-    private final UserAccess userAccess;
     @Autowired
-    public AdminController(ArticleAccess articleAccess, LogAccess logAccess, UserAccess userAccess) {
-        this.articleAccess = articleAccess;
-        this.logAccess = logAccess;
-        this.userAccess = userAccess;
-    }
+    private ArticleAccess articleAccess;
+    @Autowired
+    private LogAccess logAccess;
+    @Autowired
+    private UserAccess userAccess;
     @GetMapping(value = {"", "/", "/articles"})
     public String articles(Model model) {
         var allArticles = articleAccess.getAllArticles();

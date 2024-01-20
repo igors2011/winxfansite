@@ -15,12 +15,7 @@ import java.util.List;
 @RequestMapping("/search")
 public class SearchController {
     @Autowired
-    private final SearchAccess searchAccess;
-
-    public SearchController(SearchAccess searchAccess) {
-        this.searchAccess = searchAccess;
-    }
-
+    private SearchAccess searchAccess;
     @GetMapping("")
     public String searchResult(@RequestParam("query") String query, Model model)
     {

@@ -12,11 +12,8 @@ import java.security.Principal;
 @Controller
 @RequestMapping("/account")
 public class AccountController {
-    private final UserAccess userAccess;
     @Autowired
-    public AccountController(UserAccess userAccess) {
-        this.userAccess = userAccess;
-    }
+    private UserAccess userAccess;
     @GetMapping("/login")
     public String login() {
         return "users/login";
