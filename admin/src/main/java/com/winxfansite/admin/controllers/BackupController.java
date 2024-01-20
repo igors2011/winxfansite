@@ -14,11 +14,8 @@ import java.io.IOException;
 @Controller
 @RequestMapping("/backup")
 public class BackupController {
-    private final BackupAccess backupAccess;
     @Autowired
-    public BackupController(BackupAccess backupAccess) {
-        this.backupAccess = backupAccess;
-    }
+    private BackupAccess backupAccess;
     @GetMapping(value = {"", "/"})
     public String backupPage() {
         return "backup/backup";

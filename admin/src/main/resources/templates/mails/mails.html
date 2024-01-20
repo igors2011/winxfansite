@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:insert="~{shared/meta :: meta}"></div>
+    <title>Отправка сообщений</title>
+</head>
+<body>
+    <div class="head">
+        <div th:insert="~{shared/header :: header}"></div>
+    </div>
+<form action="#" th:action="@{/mails}" method="post">
+    <label>
+        <p>Тема</p>
+        <textarea name="subject"></textarea>
+    </label>
+    <label>
+        <p>Сообщение</p>
+        <textarea name="message"></textarea>
+    </label>
+    <input type="submit">
+</form>
+</body>
+</html>

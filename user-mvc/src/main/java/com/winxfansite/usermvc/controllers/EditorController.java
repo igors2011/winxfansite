@@ -17,11 +17,8 @@ import java.io.IOException;
 @Controller
 @RequestMapping("/editor")
 public class EditorController {
-    private final ArticleAccess articleAccess;
     @Autowired
-    public EditorController(ArticleAccess fairiesAccess) {
-        this.articleAccess = fairiesAccess;
-    }
+    private ArticleAccess articleAccess;
     @GetMapping("/add")
     public String addArticle(Model model) {
         model.addAttribute("article", new Article());

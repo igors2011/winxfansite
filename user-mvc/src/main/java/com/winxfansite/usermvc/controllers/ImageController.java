@@ -13,11 +13,8 @@ import java.util.Base64;
 @Controller
 @RequestMapping("/image")
 public class ImageController {
-    private final ArticleAccess articleAccess;
     @Autowired
-    public ImageController(ArticleAccess fairiesAccess) {
-        this.articleAccess = fairiesAccess;
-    }
+    private ArticleAccess articleAccess;
     @GetMapping("/image/{id}")
     public String getImage(@PathVariable int articleId, Model model) {
         byte[] imageData = articleAccess.getImageByArticleId(articleId);

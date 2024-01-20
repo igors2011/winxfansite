@@ -10,11 +10,8 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/users")
 public class UsersController {
-    private final UserAccess userAccess;
     @Autowired
-    public UsersController(UserAccess userAccess) {
-        this.userAccess = userAccess;
-    }
+    private UserAccess userAccess;
     @GetMapping("/edit/{userId}")
     public String editUser(@PathVariable("userId") int userId, Model model) {
         User user = userAccess.getUserById(userId);

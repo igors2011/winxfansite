@@ -18,11 +18,8 @@ import java.util.Base64;
 @Controller
 @RequestMapping("/shared")
 public class SharedController {
-    private final ArticleAccess articleAccess;
     @Autowired
-    public SharedController(ArticleAccess fairiesAccess) {
-        this.articleAccess = fairiesAccess;
-    }
+    private ArticleAccess articleAccess;
     @GetMapping(value = {"", "/"})
     public String index() {
         return "main/index";

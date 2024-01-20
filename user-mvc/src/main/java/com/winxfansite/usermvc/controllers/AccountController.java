@@ -7,14 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @Controller
 @RequestMapping("/account")
 public class AccountController {
-    private final UserAccess userAccess;
     @Autowired
-    public AccountController(UserAccess userAccess) {
-        this.userAccess = userAccess;
-    }
+    private UserAccess userAccess;
     @GetMapping("/login")
     public String login() {
         return "users/login";
@@ -32,5 +31,20 @@ public class AccountController {
     @GetMapping("/logout")
     public String logout() {
         return "redirect:/account/login";
+    }
+    @GetMapping("/edit")
+    public String edit(Model model, Principal principal) {
+        String userName = principal.getName();
+        User user = userAccess.getUserByName(userName);
+        model.addAttribute("user", user);
+        return "/users/edit";
+    }
+    @PostMapping("/edit")
+    public String updateUserProfile(@ModelAttribute("user") User user, @RequestParam("newUsername") String newUsername, Principal principal) {
+        String username = principal.getName();
+        if (username.equals(user.getUsername())) {
+            userAccess.editUser(user, newUsername);
+        }
+        return "redirect:/logout";
     }
 }

@@ -191,4 +191,20 @@ public class UserAccess {
             throw new RuntimeException(e);
         }
     }
+    public List<String> getUserEmails() {
+        List<String> result = new ArrayList<>();
+        try {
+            var connection = DBConnection.getConnection();
+            Statement statement = connection.createStatement();
+            String query = "SELECT email FROM users WHERE email IS NOT NULL;";
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                result.add(resultSet.getString("email"));
+            }
+            connection.close();
+        } catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
 }
