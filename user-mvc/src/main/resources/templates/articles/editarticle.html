@@ -9,7 +9,7 @@
     <div th:insert="~{shared/header :: header}"></div>
     <form action="#" th:action="@{/editor/edit}" th:object="${article}" method="post" enctype="multipart/form-data">
         <p>Название: <input type="text" th:field="*{header}" /></p>
-        <p>Краткое описание: <input type="text" th:field="*{shortDescr}" /></p>
+        <p>Краткое описание: <textarea th:field="*{shortDescr}" /></p>
         <p>Содержание: </p>
         <div id="editor">
         </div>
