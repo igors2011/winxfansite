@@ -8,11 +8,10 @@
             <a th:href="@{/admin/users}" id="schools"><li><img th:src="@{/img/user.svg}"><div class="header_element">ПОЛЬЗОВАТЕЛИ</div></li></a>
             <a th:href="@{/backup}"><li><div class="header_element">БЭКАП</div></li></a>
             <a th:href="@{/mails}"><li><div class="header_element">РАССЫЛКА</div></li></a>
-            <li><div class="header_element" sec:authentication="name"></div></li>
-            <a th:href="@{/logout}" id="villains"><li><img th:src="@{/img/exit.svg}"><div class="header_element">ВЫХОД</div></li></a>
+            <a th:href="@{/admin/users}" id="username"><li sec:authorize="isAuthenticated()"><div class="header_element" sec:authentication="name"></div></li></a>
+            <a sec:authorize="isAuthenticated()" th:href="@{/logout}" id="logout"><li><img th:src="@{/img/exit.svg}"><div class="header_element">Выход</div></li></a>
         </ul>
         <button class="menu_button" id="open_menu">O</button>
-<!--        <div class="user"><img th:src="@{/img/people.png}"></div>-->
     </div>
     <script th:src="@{/js/header_script.js}"></script>
     <!--шапка-->
