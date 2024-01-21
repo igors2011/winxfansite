@@ -15,7 +15,7 @@ public class ArticleAccess {
         try {
             var connection = DBConnection.getConnection();
             Statement statement = connection.createStatement();
-            String query = "SELECT u.username AS author, c.message as message FROM users u JOIN comments c ON u.id = c.userid WHERE c.articleid = " + article.getId() + ";";
+            String query = "SELECT u.username AS author, c. id AS id, c.message as message FROM users u JOIN comments c ON u.id = c.userid WHERE c.articleid = " + article.getId() + ";";
             ResultSet resultSet = statement.executeQuery(query);
             LogAccess.logInfo("Получен список комментариев для статьи с id = " + article.getId());
             connection.close();
@@ -45,6 +45,7 @@ public class ArticleAccess {
         List<Comment> comments = new ArrayList<>();
         while (commentsResultSet.next()) {
             Comment comment = new Comment();
+            comment.setId(commentsResultSet.getInt("id"));
             comment.setAuthorName(commentsResultSet.getString("author"));
             comment.setMessage(commentsResultSet.getString("message"));
             comments.add(comment);
@@ -282,6 +283,26 @@ public class ArticleAccess {
         catch (SQLException | IOException e)
         {
             LogAccess.logError("Ошибка при добавлении пользователем с id = " + userId + " комментария к статье с id = " + articleId);
+            throw new RuntimeException(e);
+        }
+    }
+    private static PreparedStatement prepareCommentForDelete(Connection connection, int id) {
+        try {
+            return connection.prepareStatement("DELETE FROM comments WHERE id = " + id + ";");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void deleteCommentById(int commentId) {
+        try {
+            var connection = DBConnection.getConnection();
+            PreparedStatement preparedComment = prepareCommentForDelete(connection, commentId);
+            preparedComment.executeUpdate();
+            LogAccess.logInfo("Комментарий с id " + commentId + "удален");
+            preparedComment.close();
+            connection.close();
+        } catch (SQLException | IOException e) {
+            LogAccess.logError("Ошибка при удалении комментария с id " + commentId);
             throw new RuntimeException(e);
         }
     }

@@ -30,6 +30,10 @@
             <h1>
                 <h2 th:text="${comment.getAuthorName()}"></h2>
                 <div class="comment_wrapper" th:text="${comment.getMessage()}"></div>
+                <form sec:authorize="hasRole('ROLE_admin') or hasRole('ROLE_editor')" action="#" th:action="@{/editor/deletecomment}" method="post">
+                    <input type="hidden" name="commentId" th:value="${comment.getId()}">
+                    <input type="submit" value="Удалить">
+                </form>
             </h1>
         </div>
         </div>

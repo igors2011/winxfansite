@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/comment")
 public class CommentController {
+    @Autowired
     private UserAccess userAccess;
+    @Autowired
     private ArticleAccess articleAccess;
     @PostMapping(value = {"", "/"})
     public String writeComment(@RequestParam("articleId") int articleId, @RequestParam("message") String message, @RequestParam("articleName") String articleName, Authentication authentication, HttpServletRequest request) {

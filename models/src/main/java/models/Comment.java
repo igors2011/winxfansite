@@ -1,8 +1,17 @@
 package models;
 
 public class Comment {
+    private int id;
+
     private String authorName;
     private String message;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getAuthorName() {
         return authorName;

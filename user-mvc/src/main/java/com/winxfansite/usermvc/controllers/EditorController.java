@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 @Controller
@@ -55,5 +56,11 @@ public class EditorController {
     public String deleteArticle(@ModelAttribute("article") Article article) {
         articleAccess.deleteArticle(article.getId());
         return "articles/deletearticlesuccess";
+    }
+    @PostMapping("/deletecomment")
+    public String deleteComment(@RequestParam("commentId") int commentId, HttpServletRequest request) {
+        articleAccess.deleteCommentById(commentId);
+        String referer = request.getHeader("referer");
+        return "redirect:" + referer;
     }
 }
