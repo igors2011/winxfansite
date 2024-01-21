@@ -8,6 +8,7 @@ public class User {
 
     private String role;
     private boolean enabled;
+    private boolean getMessages;
 
     public int getId() {
         return id;
@@ -54,5 +55,12 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    public boolean isGetMessages() {
+        return getMessages;
+    }
+
+    public void setGetMessages(boolean getMessages) {
+        this.getMessages = getMessages;
     }
 }

@@ -9,10 +9,11 @@ import java.sql.*;
 public class UserAccess {
     public static PreparedStatement prepareUserForUpdate(Connection connection, User user, String newUsername) {
         try {
-            PreparedStatement statement = connection.prepareStatement("UPDATE users SET (username, password, email) = (?, ?, ?) WHERE username = '" + user.getUsername() + "';");
+            PreparedStatement statement = connection.prepareStatement("UPDATE users SET (username, password, email, getmessages) = (?, ?, ?, ?) WHERE username = '" + user.getUsername() + "';");
             statement.setString(1, newUsername);
             statement.setString(2, user.getPassword());
             statement.setString(3, user.getEmail());
+            statement.setBoolean(4, user.isGetMessages());
             return statement;
         }
         catch (SQLException e)
@@ -29,6 +30,7 @@ public class UserAccess {
             result.setRole(resultSet.getString("role"));
             result.setEnabled(resultSet.getBoolean("enabled"));
             result.setEmail(resultSet.getString("email"));
+            result.setGetMessages(resultSet.getBoolean("getmessages"));
         }
         catch (SQLException e)
         {
@@ -38,12 +40,13 @@ public class UserAccess {
     }
     private static PreparedStatement prepareUserForInsert(Connection connection, User user) {
         try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (username, password, role, enabled, email) VALUES (?, ?, ?, ?, ?)");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (username, password, role, enabled, email, getmessages) VALUES (?, ?, ?, ?, ?, ?)");
             statement.setString(1, user.getUsername());
             statement.setString(2, user.getPassword());
             statement.setString(3, "ROLE_user");
             statement.setBoolean(4, true);
             statement.setString(5, user.getEmail());
+            statement.setBoolean(6, user.isGetMessages());
             return statement;
         }
         catch (Exception e)

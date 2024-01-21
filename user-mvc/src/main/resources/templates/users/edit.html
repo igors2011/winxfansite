@@ -15,6 +15,7 @@
         <p>Имя пользователя: <input type="text" name="newUsername"></p>
         <p>Пароль: <input type="password" th:field="*{password}"></p>
         <p>Почта: <input type="email" th:field="*{email}"></p>
+        <p>Получать рассылку: <input type="checkbox" th:field="*{getMessages}"></p>
         <input type="submit" value="Сохранить">
     </form>
 </body>

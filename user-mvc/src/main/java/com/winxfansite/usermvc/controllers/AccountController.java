@@ -25,6 +25,7 @@ public class AccountController {
     }
     @PostMapping("/register")
     public String addUser(@ModelAttribute("newUser") User newUser) {
+        newUser.setGetMessages(true);
         userAccess.insertUser(newUser);
         return "redirect:/account/login";
     }

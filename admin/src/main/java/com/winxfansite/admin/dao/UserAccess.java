@@ -196,7 +196,7 @@ public class UserAccess {
         try {
             var connection = DBConnection.getConnection();
             Statement statement = connection.createStatement();
-            String query = "SELECT email FROM users WHERE email IS NOT NULL;";
+            String query = "SELECT email FROM users WHERE email IS NOT NULL AND getmessages = true;";
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 result.add(resultSet.getString("email"));
