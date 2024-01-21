@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:insert="~{shared/meta :: meta}"></div>
+    <title>Пользователи</title>
+</head>
+<body>
+<div class="head">
+    <div th:insert="~{shared/header :: header}"></div>
+</div>
+<form action="#" th:action="@{/users/usersbyrole}" method="post">
+    <select name="role">
+        <option th:selected="${role == 'ROLE_user'}" value="ROLE_user">Пользователи</option>
+        <option th:selected="${role == 'ROLE_candidate'}" value="ROLE_candidate">Кандидаты в редакторы</option>
+        <option th:selected="${role == 'ROLE_editor'}" value="ROLE_editor">Редакторы</option>
+        <option th:selected="${role == 'ROLE_admin'}" value="ROLE_admin">Администраторы</option>
+    </select>
+    <input type="submit" value="Выбрать">
+</form>
+<div class="table_container">
+    <table>
+        <tr><th>Id</th><th>Имя пользователя</th><th>Роль</th><th>Активность</th><th>Редактирование</th></tr>
+        <tr th:each="user : ${users}"><td th:text="@{${user.getId()}}"></td><td th:text="@{${user.getUsername()}}"></td><td th:text="@{${user.getRole()}}"></td><td th:text="@{${user.isEnabled()}}"></td><td><a class="all" th:href="@{'/users/edit/' + ${user.getId()}}">Редактировать</a></td></tr>
+        <tr><td><a th:href="@{/users/create}">Добавить пользователя</a></td></tr>
+    </table>
+</div>
+</body>
+</html>

@@ -100,6 +100,23 @@ public class UserAccess {
         }
         return result;
     }
+    public List<User> getUsersByRole(String role) {
+        List<User> result = new ArrayList<>();
+        try {
+            var connection = DBConnection.getConnection();
+            Statement statement = connection.createStatement();
+            String query = "SELECT id, username, role, enabled FROM users WHERE role = '" + role + "' ORDER BY id;";
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                User newUser = safeResultSetToUser(resultSet);
+                result.add(newUser);
+            }
+            connection.close();
+        } catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
     public User getUserById(int id) {
         try {
             User result = new User();

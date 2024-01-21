@@ -34,4 +34,11 @@ public class UsersController {
         userAccess.createUser(user);
         return "redirect:/admin/users";
     }
+    @PostMapping("/usersbyrole")
+    public String usersByRole(@RequestParam("role") String role, Model model) {
+        var users = userAccess.getUsersByRole(role);
+        model.addAttribute("role", role);
+        model.addAttribute("users", users);
+        return "users/usersbyrole";
+    }
 }
