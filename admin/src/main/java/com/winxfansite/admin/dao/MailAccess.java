@@ -5,22 +5,24 @@ import org.springframework.stereotype.Component;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Properties;
 @Component
 public class MailAccess {
-    public void sendEmail(List<String> to, String subject, String body) throws MessagingException{
+    public void sendEmail(List<String> to, String subject, String body) throws MessagingException, IOException {
         // Настройки для подключения к почтовому серверу
         Properties props = new Properties();
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.port", "587");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        try(InputStream in = Files.newInputStream(Paths.get("admin/src/main/resources/settings/smtp.properties"))){
+            props.load(in);
+        }
 
         // Данные для аутентификации на почтовом сервере
-        String username = "igors20111@gmail.com";
-        String password = "lixg obsb ggmv dogt";
+        String username = props.getProperty("username");
+        String password = props.getProperty("password");
 
         // Создание сессии для отправки сообщений
         Session session = Session.getInstance(props, new Authenticator() {
