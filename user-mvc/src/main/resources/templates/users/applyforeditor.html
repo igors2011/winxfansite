@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Тест</title>
+    <div th:insert="~{shared/meta :: meta}"></div>
+</head>
+<body>
+<div class="head">
+    <div th:insert="~{shared/header :: header}"></div>
+</div>
+<form action="#" th:action="@{/account/apply}" method="post">
+    <p>
+        Кто придумал название и логотип Winx?
+    </p>
+    <select name="q1">
+        <option value="a1">Муза</option>
+        <option value="a2">Блум</option>
+        <option value="a3">Флора</option>
+    </select>
+    <p>
+        В каком сезоне и откуда появился Валтор?
+    </p>
+    <select name="q2">
+        <option value="a1">Во 2 сезоне из огня</option>
+        <option value="a2">В 1 сезоне из измерения Омега</option>
+        <option value="a3">В 3 сезоне, его создали ведьмы</option>
+    </select>
+    <p>
+        Как звали врага Винкс во 2 сезоне?
+    </p>
+    <select name="q3">
+        <option value="a1">Трикс</option>
+        <option value="a2">Валтор</option>
+        <option value="a3">Даркар</option>
+    </select>
+    <p>
+        Кто такие пикси?
+    </p>
+    <select name="q4">
+        <option value="a1">Маленькие феечки</option>
+        <option value="a2">Волшебные зверьки</option>
+        <option value="a3">Монстры</option>
+    </select>
+    <p>
+        Кто проходил лабиринт, чтобы получить водные звезды?
+    </p>
+    <select name="q5">
+        <option value="a1">Флора, Лейла, Блум</option>
+        <option value="a2">Муза, Стелла, Флора</option>
+        <option value="a3">Стелла, Муза, Текна</option>
+    </select>
+    <input type="submit" value="Отправить">
+</form>
+</body>
+</html>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Вход</title>
+    <title>Аккаунт</title>
     <div th:insert="~{shared/meta :: meta}"></div>
 </head>
 <body>
@@ -18,5 +18,6 @@
         <p>Получать рассылку: <input type="checkbox" th:field="*{getMessages}"></p>
         <input type="submit" value="Сохранить">
     </form>
+<a sec:authorize="hasRole('ROLE_user')" th:href="@{apply}">Стать редактором!</a>
 </body>
 </html>

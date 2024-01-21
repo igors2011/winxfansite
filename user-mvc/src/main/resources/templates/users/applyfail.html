@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Тест</title>
+    <div th:insert="~{shared/meta :: meta}"></div>
+</head>
+<body>
+<div class="head">
+    <div th:insert="~{shared/header :: header}"></div>
+</div>
+<h1>К сожалению, тест был пройден неверно</h1>
+<a th:href="@{/}">На главную</a>
+</body>
+</html>

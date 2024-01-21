@@ -114,4 +114,28 @@ public class UserAccess {
             throw new RuntimeException(e);
         }
     }
+    private static PreparedStatement prepareUserForMakingCandidate(Connection connection, User user) {
+        try {
+            return connection.prepareStatement("UPDATE users SET role = 'ROLE_candidate' WHERE id = " + user.getId() + ";");
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+    public void makeUserCandidate(User user) {
+        try {
+            Connection connection = DBConnection.getConnection();
+            PreparedStatement preparedUser = prepareUserForMakingCandidate(connection, user);
+            preparedUser.executeUpdate();
+            LogAccess.logInfo("Изменён пользователь с именем = " + user.getUsername());
+            preparedUser.close();
+            connection.close();
+        }
+        catch (SQLException | IOException e)
+        {
+            LogAccess.logError("Ошибка при изменении пользователя с именем = " + user.getUsername());
+            throw new RuntimeException(e);
+        }
+    }
 }

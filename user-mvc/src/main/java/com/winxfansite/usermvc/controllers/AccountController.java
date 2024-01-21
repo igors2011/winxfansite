@@ -48,4 +48,18 @@ public class AccountController {
         }
         return "redirect:/logout";
     }
+    @GetMapping("/apply")
+    public String apply() {
+        return "/users/applyforeditor";
+    }
+    @PostMapping("/apply")
+    public String applyForEditor(@RequestParam("q1") String q1, @RequestParam("q2") String q2, @RequestParam("q3") String q3, @RequestParam("q4") String q4, @RequestParam("q5") String q5, Principal principal) {
+        String userName = principal.getName();
+        User user = userAccess.getUserByName(userName);
+        if (q1.equals("a2") && q2.equals("a3") && q3.equals("a3") && q4.equals("a1") && q5.equals("a3")) {
+            userAccess.makeUserCandidate(user);
+            return "users/applysuccess";
+        }
+        return "users/applyfail";
+    }
 }
