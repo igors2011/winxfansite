@@ -1,5 +1,6 @@
 package com.winxfansite.admin.dao;
 
+import idao.admin.IBackupAccess;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -8,7 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 @Component
-public class BackupAccess {
+public class BackupAccess implements IBackupAccess {
     public String getArticles() {
         try {
             StringBuilder result = new StringBuilder();

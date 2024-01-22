@@ -1,12 +1,16 @@
 package com.winxfansite.usermvc.daopostgres;
 
+import idao.user.IUserAccess;
 import models.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.sql.*;
 @Component
-public class UserAccess {
+public class UserAccess implements IUserAccess {
+    @Autowired
+    private LogAccess logAccess;
     public static PreparedStatement prepareUserForUpdate(Connection connection, User user, String newUsername) {
         try {
             PreparedStatement statement = connection.prepareStatement("UPDATE users SET (username, password, email, getmessages) = (?, ?, ?, ?) WHERE username = '" + user.getUsername() + "';");
@@ -59,13 +63,13 @@ public class UserAccess {
             Connection connection = DBConnection.getConnection();
             PreparedStatement preparedUser = prepareUserForInsert(connection, user);
             preparedUser.executeUpdate();
-            LogAccess.logInfo("Добавлен пользователь с именем " + user.getUsername());
+            logAccess.logInfo("Добавлен пользователь с именем " + user.getUsername());
             preparedUser.close();
             connection.close();
         }
         catch (SQLException | IOException e)
         {
-            LogAccess.logError("Ошибка при добавлении пользователя с именем " + user.getUsername());
+            logAccess.logError("Ошибка при добавлении пользователя с именем " + user.getUsername());
             throw new RuntimeException(e);
         }
     }
@@ -104,13 +108,13 @@ public class UserAccess {
             Connection connection = DBConnection.getConnection();
             PreparedStatement preparedUser = prepareUserForUpdate(connection, user, newUsername);
             preparedUser.executeUpdate();
-            LogAccess.logInfo("Изменён пользователь с именем = " + user.getUsername());
+            logAccess.logInfo("Изменён пользователь с именем = " + user.getUsername());
             preparedUser.close();
             connection.close();
         }
         catch (SQLException | IOException e)
         {
-            LogAccess.logError("Ошибка при изменении пользователя с именем = " + user.getUsername());
+            logAccess.logError("Ошибка при изменении пользователя с именем = " + user.getUsername());
             throw new RuntimeException(e);
         }
     }
@@ -128,13 +132,13 @@ public class UserAccess {
             Connection connection = DBConnection.getConnection();
             PreparedStatement preparedUser = prepareUserForMakingCandidate(connection, user);
             preparedUser.executeUpdate();
-            LogAccess.logInfo("Изменён пользователь с именем = " + user.getUsername());
+            logAccess.logInfo("Изменён пользователь с именем = " + user.getUsername());
             preparedUser.close();
             connection.close();
         }
         catch (SQLException | IOException e)
         {
-            LogAccess.logError("Ошибка при изменении пользователя с именем = " + user.getUsername());
+            logAccess.logError("Ошибка при изменении пользователя с именем = " + user.getUsername());
             throw new RuntimeException(e);
         }
     }

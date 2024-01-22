@@ -1,7 +1,9 @@
 package com.winxfansite.usermvc.daopostgres;
 
+import idao.user.IArticleAccess;
 import models.Article;
 import models.Comment;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -10,18 +12,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class ArticleAccess {
+public class ArticleAccess implements IArticleAccess {
+    @Autowired
+    private LogAccess logAccess;
     public static ResultSet extractComments(Article article) {
         try {
             var connection = DBConnection.getConnection();
             Statement statement = connection.createStatement();
             String query = "SELECT u.username AS author, c. id AS id, c.message as message FROM users u JOIN comments c ON u.id = c.userid WHERE c.articleid = " + article.getId() + ";";
             ResultSet resultSet = statement.executeQuery(query);
-            LogAccess.logInfo("Получен список комментариев для статьи с id = " + article.getId());
             connection.close();
             return resultSet;
         } catch (SQLException | IOException e) {
-            LogAccess.logError("Ошибка при получении списка комментариев для статьи с id = " + article.getId());
             throw new RuntimeException(e);
         }
     }
@@ -144,10 +146,10 @@ public class ArticleAccess {
             }
             preparedArticle.executeUpdate();
             if (!action) {
-                LogAccess.logInfo("Статья с названием " + article.getHeader() +  " добавлена");
+                logAccess.logInfo("Статья с названием " + article.getHeader() +  " добавлена");
             }
             else {
-                LogAccess.logInfo("Статья с названием " + article.getHeader() +  " отредактирована");
+                logAccess.logInfo("Статья с названием " + article.getHeader() +  " отредактирована");
             }
             preparedArticle.close();
             connection.close();
@@ -155,10 +157,10 @@ public class ArticleAccess {
         catch (SQLException | IOException e)
         {
             if (!action) {
-                LogAccess.logError("Ошибка при добавлении статьи" + article.getHeader());
+                logAccess.logError("Ошибка при добавлении статьи" + article.getHeader());
             }
             else {
-                LogAccess.logError("Ошибка при редактировании статьи" + article.getHeader());
+                logAccess.logError("Ошибка при редактировании статьи" + article.getHeader());
             }
             throw new RuntimeException(e);
         }
@@ -168,11 +170,11 @@ public class ArticleAccess {
             var connection = DBConnection.getConnection();
             PreparedStatement preparedArticle = prepareArticleForDelete(connection, id);
             preparedArticle.executeUpdate();
-            LogAccess.logInfo("Статья с id " + id + "удалена");
+            logAccess.logInfo("Статья с id " + id + "удалена");
             preparedArticle.close();
             connection.close();
         } catch (SQLException | IOException e) {
-            LogAccess.logError("Ошибка при удалении статьи с id " + id);
+            logAccess.logError("Ошибка при удалении статьи с id " + id);
             throw new RuntimeException(e);
         }
     }
@@ -183,14 +185,14 @@ public class ArticleAccess {
             Statement statement = connection.createStatement();
             String query = "SELECT * FROM articles ORDER BY type;";
             ResultSet resultSet = statement.executeQuery(query);
-            LogAccess.logInfo("Получен полный список статей");
+            logAccess.logInfo("Получен полный список статей");
             while (resultSet.next()) {
                 Article newArticle = resultSetToArticle(resultSet);
                 result.add(newArticle);
             }
             connection.close();
         } catch (SQLException | IOException e) {
-            LogAccess.logError("Ошибка при получении полного списка статей");
+            logAccess.logError("Ошибка при получении полного списка статей");
             throw new RuntimeException(e);
         }
         return result;
@@ -202,14 +204,14 @@ public class ArticleAccess {
             Statement statement = connection.createStatement();
             String query = "SELECT * FROM articles WHERE type = '" + articleType + "';";
             ResultSet resultSet = statement.executeQuery(query);
-            LogAccess.logInfo("Получен список статей категории " + articleType);
+            logAccess.logInfo("Получен список статей категории " + articleType);
             while (resultSet.next()) {
                 Article newArticle = resultSetToArticle(resultSet);
                 result.add(newArticle);
             }
             connection.close();
         } catch (SQLException | IOException e) {
-            LogAccess.logError("Ошибка при получении списка статей категории " + articleType);
+            logAccess.logError("Ошибка при получении списка статей категории " + articleType);
             throw new RuntimeException(e);
         }
         return result;
@@ -222,17 +224,18 @@ public class ArticleAccess {
             Statement statement = connection.createStatement();
             String query = "SELECT * FROM articles WHERE header = '" + header + "';";
             ResultSet resultSet = statement.executeQuery(query);
-            LogAccess.logInfo("Получена статья с заголовком " + header);
+            logAccess.logInfo("Получена статья с заголовком " + header);
             while (resultSet.next()) {
                 result = resultSetToArticle(resultSet);
             }
             connection.close();
             if (result != null) {
                 addComments(result, extractComments(result));
+                logAccess.logInfo("Получен список комментариев для статьи с id = " + result.getId());
             }
             return result;
         } catch (SQLException | IOException e) {
-            LogAccess.logError("Ошибка при получении статьи с заголовком " + header);
+            logAccess.logError("Ошибка при получении статьи с заголовком " + header);
             throw new RuntimeException(e);
         }
     }
@@ -255,7 +258,7 @@ public class ArticleAccess {
         }
         catch (SQLException | IOException e)
         {
-            LogAccess.logError("Ошибка при увеличении числа просмотров статьи с id = " + article.getId());
+            logAccess.logError("Ошибка при увеличении числа просмотров статьи с id = " + article.getId());
             throw new RuntimeException(e);
         }
     }
@@ -282,7 +285,7 @@ public class ArticleAccess {
         }
         catch (SQLException | IOException e)
         {
-            LogAccess.logError("Ошибка при добавлении пользователем с id = " + userId + " комментария к статье с id = " + articleId);
+            logAccess.logError("Ошибка при добавлении пользователем с id = " + userId + " комментария к статье с id = " + articleId);
             throw new RuntimeException(e);
         }
     }
@@ -298,11 +301,11 @@ public class ArticleAccess {
             var connection = DBConnection.getConnection();
             PreparedStatement preparedComment = prepareCommentForDelete(connection, commentId);
             preparedComment.executeUpdate();
-            LogAccess.logInfo("Комментарий с id " + commentId + "удален");
+            logAccess.logInfo("Комментарий с id " + commentId + "удален");
             preparedComment.close();
             connection.close();
         } catch (SQLException | IOException e) {
-            LogAccess.logError("Ошибка при удалении комментария с id " + commentId);
+            logAccess.logError("Ошибка при удалении комментария с id " + commentId);
             throw new RuntimeException(e);
         }
     }

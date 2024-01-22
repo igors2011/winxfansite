@@ -1,5 +1,6 @@
 package com.winxfansite.admin.dao;
 
+import idao.admin.ILogAccess;
 import models.Log;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +12,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 @Component
-public class LogAccess {
+public class LogAccess implements ILogAccess {
     private Log resultSetToLog(ResultSet resultSet) throws SQLException {
         return new Log(resultSet.getTimestamp("date"), resultSet.getString("type"), resultSet.getString("message"));
     }

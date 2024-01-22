@@ -1,5 +1,6 @@
 package com.winxfansite.admin.dao;
 
+import idao.admin.IMailAccess;
 import org.springframework.stereotype.Component;
 
 import javax.mail.*;
@@ -12,7 +13,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Properties;
 @Component
-public class MailAccess {
+public class MailAccess implements IMailAccess {
     public void sendEmail(List<String> to, String subject, String body) throws MessagingException, IOException {
         // Настройки для подключения к почтовому серверу
         Properties props = new Properties();

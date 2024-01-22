@@ -1,5 +1,6 @@
 package com.winxfansite.admin.dao;
 
+import idao.admin.IArticleAccess;
 import models.Article;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class ArticleAccess {
+public class ArticleAccess implements IArticleAccess {
     public static Article resultSetToArticle(ResultSet resultSet) throws SQLException {
         Article result = new Article();
         result.setId(resultSet.getInt("id"));

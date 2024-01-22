@@ -1,5 +1,6 @@
 package com.winxfansite.admin.dao;
 
+import idao.admin.IUserAccess;
 import models.User;
 import org.springframework.stereotype.Component;
 
@@ -8,7 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 @Component
-public class UserAccess {
+public class UserAccess implements IUserAccess {
     public static PreparedStatement prepareUser(Connection connection, User user) {
         try {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO users (username, password, role, enabled) VALUES (?, ?, ?, ?)");

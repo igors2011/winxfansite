@@ -41,4 +41,11 @@ public class UsersController {
         model.addAttribute("users", users);
         return "users/usersbyrole";
     }
+    @PostMapping("/delete")
+    public String usersByRole(@RequestParam("id") int id, Model model) {
+        User user = new User();
+        user.setId(id);
+        userAccess.deleteUser(user);
+        return "redirect:/admin/users";
+    }
 }
