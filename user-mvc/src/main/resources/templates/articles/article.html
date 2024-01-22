@@ -15,10 +15,8 @@
         </div>
         <div>
             <h2 th:text="'Категория: ' + ${article.getViewType()}"></h2>
+           <p><h2 th:text="'Автор: ' + ${article.getAuthor()}"></h2></p>
         </div>
-            <div>
-                <h2 th:text="'Автор: ' + ${article.getAuthor()}"></h2>
-            </div>
         </div>
         <div th:utext="${article.getLongDescr()}"></div>
         <div sec:authorize="hasRole('ROLE_admin') or hasRole('ROLE_editor')">
@@ -28,8 +26,8 @@
         <div class="comment_block">
         <div th:each="comment : ${article.getComments()}">
             <h1>
-                <h2 th:text="${comment.getAuthorName()}"></h2>
-                <div class="comment_wrapper" th:text="${comment.getMessage()}"></div>
+                <h4 th:text="${comment.getAuthorName()}"></h4>
+                <textarea th:text="${comment.getMessage()}" readonly></textarea>
                 <form sec:authorize="hasRole('ROLE_admin') or hasRole('ROLE_editor')" action="#" th:action="@{/editor/deletecomment}" method="post">
                     <input type="hidden" name="commentId" th:value="${comment.getId()}">
                     <input type="submit" value="Удалить">
@@ -39,11 +37,12 @@
         </div>
         <div sec:authorize="hasRole('ROLE_admin') or hasRole('ROLE_editor') or hasRole('ROLE_user')">
             <div class="send_comment">
+                <h2>Оставить комментарий</h2>
                 <form action="#" th:action="@{/comment}" method="post">
                     <input type="hidden" name="articleId" th:value="${article.getId()}" />
                     <input type="hidden" name="articleName" th:value="${article.getHeader()}" />
-                    <input type="text" name="message" />
-                    <button type="submit">Отправить комментарий</button>
+                    <textarea type="text" name="message"></textarea>
+                    <p><button type="submit">Отправить</button></p>
                 </form>
             </div>
         </div>

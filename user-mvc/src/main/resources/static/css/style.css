@@ -199,12 +199,56 @@ input {
     color: rgba(229, 65, 159, 0.8);
 }
 
-.send_comment input{
-    background-color: rgba(128, 129, 132, 0.3);
+.send_comment textarea{
+    resize: none;
     border-radius: 10%;
+    background-color:rgba(175, 177, 181, 0.35);
+    border: none;
+    width: 50%;
+    height: 100px;
+    font-size: 14px;
+    font-color: rgba(128, 129, 132, 1);
+    padding-left: 50px;
+    padding-top: 10px;
 }
 
 .comment_block{
     border-top: 2px dashed #E5419F;
     border-bottom: 2px dashed #E5419F;
+}
+
+.comment_block textarea{
+    resize: none;
+    border-radius: 10%;
+    background-color:rgba(175, 177, 181, 0.35);
+    border: none;
+    width: 50%;
+    height: 100px;
+    font-size: 14px;
+    font-color: rgba(128, 129, 132, 1);
+    padding-left: 50px;
+    padding-top: 10px;
+}
+
+.send_comment button{
+  background-color: #C23685;
+  color: #fff;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 30px auto;
+  width: 500px;
+  border: none;
+}
+
+.short_text{
+    resize: none;
+    width: 50%;
+    height: 150px;
+    font-size: 14px;
+    padding-left: 50px;
+    padding-top: 10px;
+    border-radius: 10%;
+    background-color:rgba(175, 177, 181, 0.2;
+    border: none;
 }
