@@ -1,6 +1,6 @@
 package com.winxfansite.admin.controllers;
 
-import com.winxfansite.admin.dao.BackupAccess;
+import idao.admin.IBackupAccess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +15,7 @@ import java.io.IOException;
 @RequestMapping("/backup")
 public class BackupController {
     @Autowired
-    private BackupAccess backupAccess;
+    private IBackupAccess backupAccess;
     @GetMapping(value = {"", "/"})
     public String backupPage() {
         return "backup/backup";

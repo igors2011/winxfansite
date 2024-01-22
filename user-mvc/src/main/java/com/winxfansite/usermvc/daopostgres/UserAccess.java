@@ -1,5 +1,6 @@
 package com.winxfansite.usermvc.daopostgres;
 
+import idao.user.ILogAccess;
 import idao.user.IUserAccess;
 import models.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,8 @@ import java.sql.*;
 @Component
 public class UserAccess implements IUserAccess {
     @Autowired
-    private LogAccess logAccess;
-    public static PreparedStatement prepareUserForUpdate(Connection connection, User user, String newUsername) {
+    private ILogAccess logAccess;
+    private static PreparedStatement prepareUserForUpdate(Connection connection, User user, String newUsername) {
         try {
             PreparedStatement statement = connection.prepareStatement("UPDATE users SET (username, password, email, getmessages) = (?, ?, ?, ?) WHERE username = '" + user.getUsername() + "';");
             statement.setString(1, newUsername);
@@ -25,7 +26,7 @@ public class UserAccess implements IUserAccess {
             throw new RuntimeException(e);
         }
     }
-    public static User resultSetToUser(ResultSet resultSet) {
+    private static User resultSetToUser(ResultSet resultSet) {
         User result = new User();
         try {
             result.setId(resultSet.getInt("id"));

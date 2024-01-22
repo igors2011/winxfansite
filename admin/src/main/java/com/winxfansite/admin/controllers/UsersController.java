@@ -1,6 +1,6 @@
 package com.winxfansite.admin.controllers;
 
-import com.winxfansite.admin.dao.UserAccess;
+import idao.admin.IUserAccess;
 import models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/users")
 public class UsersController {
     @Autowired
-    private UserAccess userAccess;
+    private IUserAccess userAccess;
     @GetMapping("/edit/{userId}")
     public String editUser(@PathVariable("userId") int userId, Model model) {
         User user = userAccess.getUserById(userId);

@@ -1,6 +1,8 @@
 package com.winxfansite.admin.dao;
 
+import idao.admin.ILogAccess;
 import idao.admin.IMailAccess;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.mail.*;
@@ -14,6 +16,8 @@ import java.util.List;
 import java.util.Properties;
 @Component
 public class MailAccess implements IMailAccess {
+    @Autowired
+    private ILogAccess logAccess;
     public void sendEmail(List<String> to, String subject, String body) throws MessagingException, IOException {
         // Настройки для подключения к почтовому серверу
         Properties props = new Properties();
@@ -35,14 +39,18 @@ public class MailAccess implements IMailAccess {
 
         // Создание сообщения
         Message message = new MimeMessage(session);
-        message.setFrom(new InternetAddress("igors20111@gmail.com"));
         for (String recipient : to) {
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
         }
         message.setSubject(subject);
         message.setText(body);
-
-        // Отправка сообщения
-        Transport.send(message);
+        try {
+            // Отправка сообщения
+            Transport.send(message);
+            logAccess.logInfo("Рассылка отправлена");
+        }
+        catch (Exception e) {
+            logAccess.logError("Ошибка при отправке рассылки");
+        }
     }
 }

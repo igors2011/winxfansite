@@ -1,9 +1,10 @@
 package idao.user;
 
 import models.Article;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Component
 public interface IArticleAccess {
     byte[] getImageByArticleId(int articleId);
     void insertOrUpdateArticle(Article article, byte[] image, boolean action);

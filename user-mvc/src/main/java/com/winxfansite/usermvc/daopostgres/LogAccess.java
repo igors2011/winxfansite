@@ -10,7 +10,7 @@ import java.util.Date;
 
 @Component
 public class LogAccess implements ILogAccess {
-    public static PreparedStatement prepareLog(Connection connection, Log log) {
+    private static PreparedStatement prepareLog(Connection connection, Log log) {
         try {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO logs (date, type, message) VALUES (?, ?, ?)");
             statement.setTimestamp(1, log.getDate());
@@ -37,9 +37,9 @@ public class LogAccess implements ILogAccess {
         }
     }
     public void logInfo(String message) {
-        this.insertLog(new Log(new Timestamp(new Date().getTime()), "message", message));
+        insertLog(new Log(new Timestamp(new Date().getTime()), "message", message));
     }
     public void logError(String message) {
-        this.insertLog(new Log(new Timestamp(new Date().getTime()), "error", message));
+        insertLog(new Log(new Timestamp(new Date().getTime()), "error", message));
     }
 }

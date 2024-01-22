@@ -1,8 +1,8 @@
 package com.winxfansite.admin.controllers;
 
-import com.winxfansite.admin.dao.ArticleAccess;
-import com.winxfansite.admin.dao.LogAccess;
-import com.winxfansite.admin.dao.UserAccess;
+import idao.admin.IArticleAccess;
+import idao.admin.ILogAccess;
+import idao.admin.IUserAccess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -21,11 +21,11 @@ import java.util.Date;
 @RequestMapping("/admin")
 public class AdminController {
     @Autowired
-    private ArticleAccess articleAccess;
+    private IArticleAccess articleAccess;
     @Autowired
-    private LogAccess logAccess;
+    private ILogAccess logAccess;
     @Autowired
-    private UserAccess userAccess;
+    private IUserAccess userAccess;
     @GetMapping(value = {"", "/", "/articles"})
     public String articles(Model model) {
         var allArticles = articleAccess.getAllArticles();

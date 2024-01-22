@@ -1,12 +1,11 @@
 package idao.admin;
 
 import models.User;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Component
 public interface IUserAccess {
-    User getUser(String login, String password);
-    void setUser(User user);
     List<User> getAllUsers();
     List<User> getUsersByRole(String role);
     User getUserById(int id);

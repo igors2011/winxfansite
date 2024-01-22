@@ -1,6 +1,7 @@
 package com.winxfansite.usermvc.daopostgres;
 
 import idao.user.IArticleAccess;
+import idao.user.ILogAccess;
 import models.Article;
 import models.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,8 @@ import java.util.List;
 @Component
 public class ArticleAccess implements IArticleAccess {
     @Autowired
-    private LogAccess logAccess;
-    public static ResultSet extractComments(Article article) {
+    private ILogAccess logAccess;
+    private static ResultSet extractComments(Article article) {
         try {
             var connection = DBConnection.getConnection();
             Statement statement = connection.createStatement();
@@ -43,7 +44,7 @@ public class ArticleAccess implements IArticleAccess {
             throw new RuntimeException(e);
         }
     }
-    public static void addComments(Article article, ResultSet commentsResultSet) throws SQLException {
+    private static void addComments(Article article, ResultSet commentsResultSet) throws SQLException {
         List<Comment> comments = new ArrayList<>();
         while (commentsResultSet.next()) {
             Comment comment = new Comment();
@@ -54,7 +55,7 @@ public class ArticleAccess implements IArticleAccess {
         }
         article.setComments(comments);
     }
-    public static Article resultSetToArticle(ResultSet resultSet) throws SQLException {
+    private static Article resultSetToArticle(ResultSet resultSet) throws SQLException {
         Article result = new Article();
         result.setId(resultSet.getInt("id"));
         result.setHeader(resultSet.getString("header"));
@@ -262,7 +263,7 @@ public class ArticleAccess implements IArticleAccess {
             throw new RuntimeException(e);
         }
     }
-    public static PreparedStatement prepareComment(Connection connection, int userId, int articleId, String message) {
+    private static PreparedStatement prepareComment(Connection connection, int userId, int articleId, String message) {
         try {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO comments (message, userid, articleid) VALUES (?, ?, ?)");
             statement.setString(1, message);

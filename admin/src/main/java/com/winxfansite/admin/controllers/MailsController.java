@@ -1,7 +1,7 @@
 package com.winxfansite.admin.controllers;
 
-import com.winxfansite.admin.dao.MailAccess;
-import com.winxfansite.admin.dao.UserAccess;
+import idao.admin.IMailAccess;
+import idao.admin.IUserAccess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/mails")
 public class MailsController {
     @Autowired
-    private UserAccess userAccess;
+    private IUserAccess userAccess;
     @Autowired
-    private MailAccess mailAccess;
+    private IMailAccess mailAccess;
     @GetMapping(value = {"", "/"})
     public String mails() {
         return "mails/mails";
