@@ -113,7 +113,7 @@ public class UserAccess implements IUserAccess {
     }
     private static PreparedStatement prepareUserForDelete(Connection connection, User user) {
         try {
-            return connection.prepareStatement("DELETE FROM users WHERE id = " + user.getId());
+            return connection.prepareStatement("DELETE FROM comments where userid = " + user.getId() + "; DELETE FROM users WHERE id = " + user.getId());
         }
         catch (Exception e)
         {
